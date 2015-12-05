@@ -1,1 +1,1 @@
-# StudySearchWebApp
+# StudySearch - WebApp
