@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="StudySearch - Find a place for your future">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>StudySearch</title>
+
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <link rel="shortcut icon" href="thb_favicon.ico">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="StudySearch">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="icon" type="image/png" href="assets/images/studysearch-logo.png"/>
+
+
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
+    <script src="../bower_components/material-design-lite/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Custom JS -->
+
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/studysearch.css">
+
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map');
+            var mapOptions = {
+                center: new google.maps.LatLng(52.4263462, 12.2633618),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+</head>
+<body>
+
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <!--    <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
+            <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">
+                      <img src="assets/images/thb_logo_rgb.png" style="height:18px;margin-right:5px; padding-bottom:3px;">
+                      <a href="./" class="mdl-cell--hide-phone" style="color: #000">IT-Dienste der TH Brandenburg</a>
+                      <a href="./" class="mdl-cell--hide-desktop mdl-cell--hide-tablet">IT-Dienste THB</a>
+                        XXXX
+                    </span>
+
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                        <i class="material-icons">search</i>
+                    </label>
+
+                    <div class="mdl-textfield__expandable-holder">
+                        <form name="" action="" method="get">
+                            <input class="mdl-textfield__input" type="text" id="search" name="search"/>
+                            <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                        </form>
+                    </div>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                    <a href="https://github.com/ITcatalog/" target="_blank" class="mdl-menu__item">Github</a>
+                    <a href="https://github.com/ITcatalog/WebApp/issues" target="_blank" class="mdl-menu__item">Report</a>
+                </ul>
+            </div>
+        </header>
+
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+                <img src="assets/images/user.jpg" class="demo-avatar">
+
+                <div class="demo-avatar-dropdown">
+                    <span>Jonas Jetschni</span>
+
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                        <span class="visuallyhidden">Accounts</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item">Meine Dienste</li>
+                        <li class="mdl-menu__item">Einstellungen</li>
+                        <li class="mdl-menu__item">Logout</li>
+                    </ul>
+                </div>
+            </header>
+
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <a class="mdl-navigation__link" href="?c=home"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                  role="presentation">home</i>Home</a>
+                <a class="mdl-navigation__link" href="?c=reports"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                     role="presentation">insert_chart</i>Reports</a>
+                <a class="mdl-navigation__link" href="?c=map"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                 role="presentation">share</i>Landkarte</a>
+                <a class="mdl-navigation__link" href="?c=list"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                  role="presentation">view_list</i>Liste</a>
+                <a class="mdl-navigation__link" href="?c=categories"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                        role="presentation">view_module</i>Kategorien</a>
+                <a class="mdl-navigation__link" href="?c=catalog"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                     role="presentation">local_library</i>Kataloge</a>
+
+                <div class="mdl-layout-spacer"></div>
+                <a class="mdl-navigation__link" href="https://github.com/ITcatalog/WebApp/wiki" target="_blank">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i>
+                    <span class="visuallyhidden">Help</span>
+                </a>
+            </nav>
+        </div>
+    -->
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+
+             <div class="mdl-cell mdl-cell--7-col mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-grid">
+
+                <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp mdl-card">
+
+                    <div class="mdl-card__title" style="display:block;">
+                        <h2 class="mdl-card__title-text"> Wirtschaftsinformatik </h2>
+                        <ul class="category-badge">
+                            <li class="mdl-color--grey-300">
+                                <a href="#" class="">Bachelor of Science</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-card__supporting-text">
+                        <div class="service-attribute">
+
+                            <div class="service-attribute__value">
+                                Das Bachelor-Studium Wirtschaftsinformatik befasst sich mit der akademischen Erstausbildung im Bereich der Wirtschaftsinformatik. (mehr)
+                            </div>
+                        </div>
+
+
+                        <div class="service-attribute">
+
+
+                            <ul class="program--data service-attribute__value">
+
+                                <li>
+                                    <i class="material-icons">info_outline</i>
+                                    <span>
+                                        180 ECTS Points
+                                    </span>
+                                </li>
+
+                                <li><i class="material-icons">schedule</i> 6 Semester</li>
+                                <li><i class="material-icons">grade</i> 1. Platz (CHE Ranking)</li>
+
+                            </ul>
+
+
+                        </div>
+                        <div style="clear:both"></div>
+
+
+
+
+
+                        <div class="service-attribute">
+                            <div class="service-attribute__title">Schwerpunkt</div>
+                            <div class="service-attribute__value">
+                                <span class="program-pillar">WI-Säule </span> Die genuine Wirtschaftsinformatik als eine der drei Säulen der Wirtschaftsinformatik.
+                            </div>
+                        </div>
+                        <div class="service-attribute">
+                            <div class="service-attribute__title">Job-Profil</div>
+                            <div class="service-attribute__value">
+
+                                <ul class="program--jobprofil">
+                                    <li><b>Informatik</b></li>
+                                    <li>Beratung</li>
+                                    <li>IT-Management</li>
+                                </ul>
+                                Informatik (i.e.S.) als Tätigkeitsprofil umfasst die folgenden Tätigkeiten: Hard- und Softwarelösungen oder komplexen IT-Systeme konzipieren, erstellen, installieren, betreuen oder erforschen.
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+
+            </div>
+
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-grid">
+
+                <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp mdl-card">
+                    <div class="university--header">
+                        <div class="university--logo">
+                            <img src="http://fbwmoss2010.fh-brandenburg.de/websites/workspace/Freigegebene%20Dokumente/FHB%20-%20Logo.png">
+                        </div>
+                        <div class="university--title">
+                            Technische Hochschule Brandenburg
+
+
+                        </div>
+
+                        <div class="university--social-media">
+                            <div class="university--social-media-logo">
+                                <img src="assets/img/socialmedia/twitter2.png">
+                            </div>
+
+                            <div class="university--social-media-logo">
+                                <img src="assets/img/socialmedia/facebook.png">
+                            </div>
+
+                            <div class="university--social-media-logo">
+                                <img src="assets/img/socialmedia/youtube.png">
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="mdl-card__supporting-text university--content">
+
+                        Die Fachhochschule Brandenburg (kurz: FHB) ist eine staatliche Fachhochschule in Brandenburg an der Havel. Der Schwerpunkt des Studienangebots in drei Fachbereichen konzentriert sich auf die sogenannten MINT-Fächer.
+
+                        <div class="mdl-cell mdl-cell--6-col">
+
+
+                        </div>
+
+                        <div class="mdl-cell mdl-cell--6-col">
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <!-- Square card -->
+                <style>
+                    .demo-card-square > .mdl-card__title {
+                        color: #fff;
+                        background: url('https://lh5.googleusercontent.com/proxy/6LrOygncTEdngNyKYxJbh6ufkN130LLvxnJLSwwEx29BRqMIU5ugUiEPGQL4tObVPu4LHMl9gz_szdswHYWxFLEN1m_muQ=w409-h256') bottom right 15% no-repeat #46B6AC;
+                        height:240px;
+                    }
+                </style>
+
+                <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp mdl-card demo-card-square ">
+                    <div class="mdl-card__title mdl-card--expand">
+                        <h2 class="mdl-card__title-text">Brandenburg an der Havel</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        Brandenburg an der Havel is a town in the state of Brandenburg, Germany, with a population of 71,778. It is located on the banks of the River Havel. (Wikipedia)
+                        <br /><br />
+                        <b>Population:</b> 72,516 (Dec 31, 2008)<br />
+                        <b>Area:</b>228.8 km²<br />
+                        <b>Area code:</b> 3,381
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <div id="map"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

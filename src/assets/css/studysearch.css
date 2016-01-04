@@ -1,0 +1,467 @@
+.university--header{
+    text-align:center;
+}
+
+.university--logo {
+    display: block;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    margin: 30px auto 5px;
+    padding:10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /*background: rgb(223, 223, 223);*/
+    background: rgb(255, 255, 255);
+    border: 4px solid rgb(223, 223, 223);
+    overflow: hidden !important;
+}
+
+.university--logo img {
+    height:40px;
+    width:40px;
+
+}
+
+.university--social-media {
+    background:red;
+    width:120px;
+    margin:auto;
+
+
+}
+
+.university--social-media-logo{
+    margin:auto;
+    float:left;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    padding:10px;
+    color: white;
+    text-align: center;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /*background: rgb(223, 223, 223);*/
+    background: rgb(255, 255, 255);
+    border: 4px solid rgb(223, 223, 223);
+    overflow: hidden !important;
+}
+
+.university--social-media-logo img{
+    height:12px;
+    width:12px;
+}
+
+
+
+.university--title{
+    display:block;
+    color: rgba(0,0,0,.7);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+#map {
+    width: 100%;
+    height: 200px;
+}
+
+.program--data {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align:center;
+    padding-bottom:50px;
+}
+
+.program--data li {
+    float:left;
+    padding:5px;
+    margin: 2px;
+}
+
+.program--data li span {
+}
+.program--data li i{
+    vertical-align:middle;
+}
+
+.program--jobprofil{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom:10px;
+
+}
+
+.program--jobprofil li {
+    display: inline-block;
+    text-align: center;
+    margin: 0px 2px 0px 0px;
+    padding: 20px 0px;
+    width:140px;
+    line-height:10px;
+    list-style:none;
+    border-radius: 0px;
+    border: 2px solid #455a64;
+}
+
+.program-pillar{
+    display: inline-block;
+    margin: 0px 2px 0px 0px;
+    padding: 20px 40px;
+    line-height:10px;
+    list-style:none;
+    border-radius: 0px;
+    border: 2px solid #455a64;
+}
+
+
+.demo-layout .demo-navigation .mdl-navigation__link {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+}
+.demo-layout .demo-navigation .mdl-navigation__link:hover {
+    background-color: #00BCD4;
+    color: #37474F;
+}
+.demo-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 32px;
+}
+
+
+/* IT CAT */
+
+
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.service-profile-cat{
+
+}
+
+.itcat-category > .mdl-card__title{
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.itcat-category > .mdl-card--expand {
+    color:#fff;
+}
+
+
+.itcat-category > .mdl-card__supporting-text{
+    height:130px;
+}
+
+.categories > .itcat-category > .mdl-card__supporting-text,
+.catalog > .itcat-category > .mdl-card__supporting-text{
+    height:110px;
+}
+
+.provider > .itcat-category > .mdl-card__supporting-text{
+    height:50px;
+}
+
+.itcat-service > .mdl-card__supporting-text{
+    height: 122px;
+
+}
+
+.service-attribute{
+    margin-bottom:10px;
+
+}
+
+.service-attribute__title{
+    font-weight:bold;
+
+}
+
+.service-attribute__value p{
+    color: rgba(0,0,0,.7);
+    line-height: 19px;
+    font-size: 13px;
+}
+
+.service-attribute__value li{
+    list-style:none;
+    color: rgba(0,0,0,.7);
+    line-height: 19px;
+    font-size: 13px;
+}
+
+.mdl-card__supporting-text{
+    color: rgba(0,0,0,.7);
+    line-height:19px;
+
+}
+
+.mdl-text-table {
+@extend .mdl-data-table;
+    white-space: normal;
+}
+
+.mdl-text-table th{
+    font-size:13px;
+}
+
+.mdl-text-table td{
+    padding-bottom:12px;
+}
+
+
+
+
+/* THB Colors */
+
+.mdl-color-text--thb {
+    color: rgb(204,10,47) !important; }
+
+.mdl-color--thb {
+    background-color: rgb(204,10,47) !important; }
+
+.mdl-color--thb-300 {
+    background-color: rgb(204,10,47) !important; }
+
+/* Department of business and management */
+
+.mdl-color-text--thb-dbm {
+    color: rgb(241,132,0) !important; }
+
+.mdl-color--thb-dbm {
+    background-color: rgb(241,132,0) !important; }
+
+.mdl-color--thb-dbm-300 {
+    background-color: rgb(241,132,0) !important; }
+
+
+/* Department of computer sciences */
+
+.mdl-color-text--thb-dcs {
+    color: rgb(0,186,229) !important; }
+
+.mdl-color--thb-dcs {
+    background-color: rgb(0,186,229) !important; }
+
+.mdl-color--thb-dcs-300 {
+    background-color: rgb(0,186,229) !important; }
+
+
+/* Department of technology & engineering */
+
+.mdl-color-text--thb-dte {
+    color: rgb(131,187,32) !important; }
+
+.mdl-color--thb-dte {
+    background-color: rgb(131,187,32) !important; }
+
+.mdl-color--thb-dte-300 {
+    background-color: rgb(131,187,32) !important; }
+
+
+.navigation-card{
+    padding-bottom:30px;
+
+
+}
+
+.navigation-card > .mdl-card__navigation a {
+    display: block;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding: 16px 40px;
+    margin: 0;
+
+    color: #757575;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+
+}
+
+.navigation-card > .mdl-card__navigation a:hover {
+    background-color: #eee;
+}
+
+.related-services {
+    text-align:center;
+    margin-bottom:20px
+}
+
+
+.related-services a {
+    display: inline-block;
+    margin: 0px 2px 8px 0px;
+    padding: 0px 10px;
+    line-height:18px;
+    height:16px;
+    list-style:none;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size:11px;
+    color:rgba(0,0,0,.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    text-decoration:none;
+    font-weight:400;
+    border:1px solid rgba(0,0,0,.7);
+}
+
+.related-services a:hover {
+
+    background-color:#F5F5F5;
+    text-decoration:none;
+}
+
+
+.badge-header {
+    position:relative;
+    overflow: visible !important;
+}
+.badge-header[data-badge]:after {
+    top:-10px;
+    right:-10px;
+}
+
+.badge-btn {
+    position:relative;
+    overflow: visible !important;
+}
+
+.searchBoxDiv{
+    width:100%;
+}
+
+.searchBoxDiv input{
+    font-size:40px;
+}
+
+.searchBoxDiv label{
+    overflow:visible;
+    font-size:40px;
+    top:40px
+}
+
+.homeTabBarActive:after{
+    height: 2px;
+    width: 100%;
+    display: block;
+    content: " ";
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background:rgb(158,158,158);
+    -webkit-animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
+    animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
+    -webkit-transition: all 1s cubic-bezier(.4,0,1,1);
+    transition: all 1s cubic-bezier(.4,0,1,1);
+}
+
+.category-badge{
+    margin:auto;
+    padding:0px;
+    margin-left:5px;
+    clear:both;
+}
+
+
+.category-badge li{
+    display: inline-block;
+    margin: 0px 2px 0px 0px;
+    padding: 0px 10px;
+    line-height:14px;
+    height:14px;
+    list-style:none;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size:9px;
+    color:#fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+}
+
+.category-badge li a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:400;
+}
+
+.category-badge li:hover{
+    color:#fff;
+    text-decoration:none;
+}
+
+
+.mdh-expandable-search {
+    align-items: center;
+    justify-content: center;
+}
+
+.mdh-expandable-search form {
+    /*max-width: 600px;*/
+}
+
+.mdh-expandable-search,
+.mdh-expandable-search form,
+.mdh-expandable-search input {
+    /* Cross browser flex-grow */
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.mdh-expandable-search,
+.mdh-expandable-search form {
+    /* Cross browser inline-flex */
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+/* Position search icon */
+.mdh-expandable-search .material-icons {
+    position: relative;
+    right: -40px;
+    margin-left: -24px;
+    font-size:40px
+}
+
+.mdh-expandable-search input {
+    outline: none;
+    border: none;
+    font-size: 35px;
+    padding: 0px 35px 0px 70px;
+    height: 60px;
+    line-height: 40px; /* TODO: This was recommended for cross browser compatability of input height, check if its actually needed in modern browsers */
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
