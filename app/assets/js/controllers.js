@@ -4,9 +4,6 @@ studysearchApp.controller('InstitutionListCtrl', function($scope, SPARQLQuerySer
 
 studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQLQueryService) {
     $scope.university = {};
-    $scope.university.lat = 0;
-    $scope.university.lon = 0;
-    $scope.university.locationName = '';
 
     // Aufruf des SPARQL Endpoint
     $scope.queryUniversity = function(){
@@ -15,8 +12,8 @@ studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQ
                 var responseData = response.data.results.bindings[0];
                 for(var objectProperty in responseData){
                     $scope.university[objectProperty] = responseData[objectProperty].value;
-                    $scope.addMarker('marker', parseFloat($scope.university.lat), parseFloat($scope.university.lon), $scope.university.locationName);
-                    $scope.centerMap(parseFloat($scope.university.lat), parseFloat($scope.university.lon));
+                    $scope.addMarker('marker', parseFloat($scope.university.universityLatitude), parseFloat($scope.university.universityLongitude), $scope.university.universityLabel);
+                    $scope.centerMap(parseFloat($scope.university.universityLatitude), parseFloat($scope.university.universityLongitude));
                 }
             },
             function errorCallback(response) {
@@ -66,18 +63,11 @@ studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQ
      */
     angular.extend($scope, {
         center: {
-            lat: $scope.university.lat,
-            lng: $scope.university.lon,
-            zoom: 12
+            lat: 51.097,
+            lng: 11.316,
+            zoom: 6
         },
-        markers: {
-            marker: {
-                lat: $scope.university.lat,
-                lng: $scope.university.lon,
-                message: $scope.university.locationName,
-                draggable: false
-            }
-        },
+        markers: {},
         defaults: {
             scrollWheelZoom: true
         }
@@ -107,7 +97,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
                         tmpObject[objectProperty] = responseData[arrayElement][objectProperty].value
                     }
                     $scope.universities.push(tmpObject);
-                    $scope.addMarker("marker"+$scope.universities.length, parseFloat(tmpObject.lat), parseFloat(tmpObject.lon), tmpObject.locationName, tmpObject.uri);
+                    $scope.addMarker("marker"+$scope.universities.length, parseFloat(tmpObject.universityLatitude), parseFloat(tmpObject.universityLongitude), tmpObject.universityLabel, tmpObject.universityURI);
                 }
                 console.log($scope.universities);
             },

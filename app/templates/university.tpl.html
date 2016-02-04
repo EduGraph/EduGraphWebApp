@@ -1,11 +1,11 @@
 <md-content flex md-scroll-y>
     <a href=".">&lt; zurück</a>
     <md-list>
-        <md-list-item>Name: {{university.name}}</md-list-item>
-        <md-list-item>URL: <a href="{{university.url}}">{{university.url}}</a></md-list-item>
-        <md-list-item>Location: {{university.locationName}}</md-list-item>
-        <md-list-item>Latitude: {{university.lat}}</md-list-item>
-        <md-list-item>Longitude: {{university.lon}}</md-list-item>
+        <md-list-item>Name: {{university.universityLabel}}</md-list-item>
+        <md-list-item>URL: <a ng-href="{{university.universityHomepage}}">{{university.universityHomepage}}</a></md-list-item>
+        <md-list-item>Location: {{university.universityLocationLabel}}</md-list-item>
+        <md-list-item>Latitude: {{university.universityLatitude}}</md-list-item>
+        <md-list-item>Longitude: {{university.universityLongitude}}</md-list-item>
     </md-list>
     <!--<leaflet lf-center="center" markers="markers" style="width: 100%; height: 240px;;" flex></leaflet>-->
 </md-content>
