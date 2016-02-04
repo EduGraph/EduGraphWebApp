@@ -1,0 +1,8 @@
+<md-content flex md-scroll-y>
+    <!-- Liste der Institutionen. Doppeltes 'urlencode' nötig, damit der Browser nicht automatisch dekodiert. -->
+    <md-list>
+        <md-list-item ng-repeat="institution in institutions">
+            <a href="university/{{institution.uri.value | urlencode | urlencode}}">{{institution.name.value}}</a>
+        </md-list-item>
+    </md-list>
+</md-content>

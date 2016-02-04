@@ -1,0 +1,13 @@
+{
+  "name": "studysearch-webapp",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.5.*",
+    "angular-material": "1.0.*",
+    "angular-route": "1.5.*",
+    "angular-ui-router": "0.2.*",
+    "angular-leaflet-directive": "0.10.*",
+    "angular-loading-bar": "0.8.*"
+  },
+  "private": "true"
+}
