@@ -25,6 +25,7 @@ PREFIX geo:<http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT DISTINCT
 	?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude
 	?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude
+WHERE
 {
     ?universityURI a schema:CollegeOrUniversity.
     OPTIONAL {
