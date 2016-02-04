@@ -1,17 +1,24 @@
-studysearchApp.factory('SPARQLQueryService', function($http) {
+studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) {
     // Erlaube Zugriff mittels CORS Header
     $http.defaults.useXDomain = true;
 
     var srv = {};
 
+    /*
+     * Erstellt eine SPARQL Abfrage aller schema:CollegeOrUniversity mit einigen Daten und gibt ein Promise-Objekt
+     * zurück.
+     *
+     * @param {object} options - Optionen für die Abfrage.
+     * @returns {object} promise - Gibt ein Promise auf das SPARQL Query zurück.
+     */
     srv.getUniversities = function(options){
         // Aufruf des SPARQL Endpoint
-        $http({
+        return $http({
             method: 'GET',
             headers: {
                 accept: 'application/sparql-results+json; charset=utf-8application/sparql-results+json; charset=utf-8',
             },
-            url: 'http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query',
+            url: studysearchConfig.sparqlEndpoint,
             //url: 'examples/institutions.json',
             params: {
                 'query': "" +
@@ -24,32 +31,29 @@ studysearchApp.factory('SPARQLQueryService', function($http) {
                 "PREFIX sc: <http://purl.org/science/owl/sciencecommons/>" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
 
-                "SELECT ?uri ?name ?alternateName ?city ?cityName ?lat ?lon" +
+                "SELECT ?uri ?url ?name ?locationUri ?locationName ?lat ?lon " +
                 "WHERE {" +
                 "?uri a schema:CollegeOrUniversity ." +
+                "?uri schema:url ?url ." +
                 "?uri schema:name ?name ." +
-                "?uri schema:alternateName ?alternateName ." +
-                "?uri schema:location ?city ." +
-                "SERVICE <http://DBpedia.org/sparql> {" +
-                "?city geo:lat ?lat ." +
-                "?city geo:long ?lon ." +
-                "?city rdfs:label ?cityName" +
-                "}" +
-                "FILTER ( lang(?cityName) = \"de\" )" +
-                "}" +
-                "LIMIT 100"
+                "?uri schema:location ?locationUri ." +
+                "?locationUri schema:name ?locationName ." +
+                "?locationUri schema:geo ?geo ." +
+                "?geo schema:latitude ?lat ." +
+                "?geo schema:longitude ?lon" +
+                "}"
             }
-        })
-            .then(
-            function successCallback(response) {
-                return response.data.results.bindings;
-            },
-            function errorCallback(response) {
-                console.log(response);
-            }
-        );
+        });
     };
 
+    /*
+     * Erstellt eine SPARQL Abfrage für Informationen zu einem schema:CollegeOrUniversity und gibt ein Promise Objekt
+     * zurück.
+     *
+     * @param {string} uri - URI der schema:CollegeOrUniversity
+     * @param {object} options - Optionen für die Abfrage.
+     * @returns {object} promise - Gibt ein Promise auf das SPARQL Query zurück.
+     */
     srv.getUniversityByUri = function(uri, options){
         /*
          * Doppeltes dekodieren vorherig doppelt enkodierter URI.
@@ -61,7 +65,7 @@ studysearchApp.factory('SPARQLQueryService', function($http) {
             headers: {
                 accept: 'application/sparql-results+json; charset=utf-8application/sparql-results+json; charset=utf-8',
             },
-            url: 'http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query',
+            url: studysearchConfig.sparqlEndpoint,
             //url: 'examples/institutions.json',
             params: {
                 'query': "PREFIX schema: <http://schema.org/>" +
@@ -89,15 +93,6 @@ studysearchApp.factory('SPARQLQueryService', function($http) {
                 "}"
             }
         });
-            /*.then(
-            function successCallback(response) {
-                console.log(response);
-                return response.data.results.bindings[0];
-            },
-            function errorCallback(response) {
-                console.log(response);
-            }
-        );*/
     };
 
     return {

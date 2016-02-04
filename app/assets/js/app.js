@@ -5,6 +5,17 @@
  */
 var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'ngRoute', 'leaflet-directive', 'angular-loading-bar', 'ngAnimate']);
 
+studysearchApp.constant("studysearchConfig", {
+    "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query"
+});
+
+/*
+ * Konfiguration des Log Provider
+ */
+studysearchApp.config(function($logProvider){
+    $logProvider.debugEnabled(false);
+});
+
 /*
  * Konfiguration des Routing.
  */

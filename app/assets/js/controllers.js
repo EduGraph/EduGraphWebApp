@@ -10,30 +10,27 @@ studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQ
 
     // Aufruf des SPARQL Endpoint
     $scope.queryUniversity = function(){
-        var promise = SPARQLQueryService.getUniversityByUri($routeParams.universityUri);
-        var university = promise.then(
+        SPARQLQueryService.getUniversityByUri($routeParams.universityUri).then(
             function successCallback(response) {
-                console.log(response);
-                $scope.university.name = response.data.results.bindings[0].name.value;
-                $scope.university.url = response.data.results.bindings[0].url.value;
-                $scope.university.lat = response.data.results.bindings[0].lat.value;
-                $scope.university.lon = response.data.results.bindings[0].lon.value;
-                $scope.university.locationName = response.data.results.bindings[0].locationName.value;
-                console.log($scope.university);
+                var responseData = response.data.results.bindings[0];
+                for(var objectProperty in responseData){
+                    $scope.university[objectProperty] = responseData[objectProperty].value;
+                    $scope.addMarker('marker', parseFloat($scope.university.lat), parseFloat($scope.university.lon), $scope.university.locationName);
+                    $scope.centerMap(parseFloat($scope.university.lat), parseFloat($scope.university.lon));
+                }
             },
             function errorCallback(response) {
                 console.log(response);
             }
         );
     };
-    //$scope.addMarkers(parseFloat($scope.university.lat.value), parseFloat($scope.university.lon.value), $scope.university.locationName.value);
-    //$scope.centerMap(parseFloat($scope.university.lat.value), parseFloat($scope.university.lon.value));
 
     /*
      * Fügt einen Marker mit dem angegebenen Längen- und Breitengrad, sowie einer Nachricht auf der Leaflet Karte
      * hinzu.
      */
-    $scope.addMarkers = function(latitude, longitude, message){
+    $scope.addMarker = function(name, latitude, longitude, message){
+
         angular.extend($scope, {
             markers: {
                 marker: {
@@ -93,27 +90,90 @@ studysearchApp.controller('SearchCtrl', function($scope){
 
 });
 
-studysearchApp.controller('MapCtrl', function($scope, leafletMarkerEvents, $mdSidenav){
+studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEvents, leafletData, $mdSidenav, SPARQLQueryService, $timeout){
+    $scope.universities = [];
+
+    // Aufruf des SPARQL Endpoint
+    $scope.queryUniversity = function(){
+        SPARQLQueryService.getUniversities().then(
+            function successCallback(response) {
+                var responseData = response.data.results.bindings;
+                //console.log("ResponseData:", responseData);
+                for (var arrayElement in responseData) {
+                    var tmpObject = {};
+                    //console.log("ArrayElement:", responseData[arrayElement]);
+                    for (var objectProperty in responseData[arrayElement]) {
+                        //console.log("ObjectProperty:", responseData[arrayElement][objectProperty]);
+                        tmpObject[objectProperty] = responseData[arrayElement][objectProperty].value
+                    }
+                    $scope.universities.push(tmpObject);
+                    $scope.addMarker("marker"+$scope.universities.length, parseFloat(tmpObject.lat), parseFloat(tmpObject.lon), tmpObject.locationName, tmpObject.uri);
+                }
+                console.log($scope.universities);
+            },
+            function errorCallback(response) {
+                console.log(response);
+            }
+        );
+    };
+
+    /*
+     * Fügt einen Marker mit dem angegebenen Längen- und Breitengrad, sowie einer Nachricht auf der Leaflet Karte
+     * hinzu.
+     */
+    $scope.addMarker = function(name, latitude, longitude, message, uri){
+        console.log(name, latitude, longitude, message);
+        $scope.markers[name] = {
+            lat: latitude,
+            lng: longitude,
+            message: message,
+            draggable: false,
+            layer: 'universityLayer',
+            uri: uri
+        };
+        //angular.extend($scope, tmpMarker);
+    };
+
     /*
      * Initiieren der Leaflet Karte.
      */
     angular.extend($scope, {
         center: {
-            lat: 50,
-            lng: 16,
-            zoom: 12
+            lat: 51.097,
+            lng: 11.316,
+            zoom: 6
         },
         markers: {
-            marker: {
-                lat: 50,
-                lng: 16,
-                message: 'Test',
-                draggable: false
-            }
         },
         events: {
             markers: {
                 enable: leafletMarkerEvents.getAvailableEvents()
+            }
+        },
+        layers: {
+            baselayers: {
+                toner: {
+                    name: 'Stamen Toner',
+                    url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                },
+                watercolor: {
+                    name: 'Watercolor',
+                    url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                },
+                hotosm: {
+                    name: 'HOTOSM',
+                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                }
+            },
+            overlays: {
+                universityLayer: {
+                    name: 'CollegeOrUniversity',
+                    type: 'markercluster',
+                    visible: true
+                }
             }
         },
         defaults: {
@@ -127,10 +187,22 @@ studysearchApp.controller('MapCtrl', function($scope, leafletMarkerEvents, $mdSi
     for (var k in markerEvents){
         var eventName = 'leafletDirectiveMarker.universityMap.' + markerEvents[k];
         $scope.$on(eventName, function(event, args){
-            console.log(event);
+            console.log(event,args);
             if(event.name == 'leafletDirectiveMarker.universityMap.click'){
-                $mdSidenav('info-sidenav').toggle();
+                //$mdSidenav('info-sidenav').toggle();
+                var newLocation = '/university/'+encodeURIComponent(encodeURIComponent($scope.markers[args.modelName].uri));
+                console.log(newLocation);
+                $location.url(newLocation);
             }
         });
     }
+
+    $scope.queryUniversity();
+    $timeout(function(){
+        leafletData.getMap().then(function(map){
+            map.invalidateSize();
+            console.log("Size invalidated by timeout.");
+        });
+    });
+    console.log($scope);
 });
