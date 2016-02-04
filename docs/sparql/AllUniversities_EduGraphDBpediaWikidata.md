@@ -55,7 +55,10 @@ SELECT *
 		}
   		OPTIONAL {
 			SERVICE <http://query.wikidata.org/sparql> {
-				?wikidataURINew wdt:P625 ?latLon.
+				?wikidataURINew wdt:P625 ?geoLatLon.
+				BIND(STR(?geoLatLon) AS ?geoLatLonStr)
+                BIND(STRBEFORE(STRAFTER(?geoLatLonStr, "Point("), " ") AS ?lat)
+                BIND(STRBEFORE(STRAFTER(?geoLatLonStr, " "), ")") AS ?long)
   			}
   		}
     }
