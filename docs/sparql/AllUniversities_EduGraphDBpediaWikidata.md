@@ -29,38 +29,47 @@ SELECT *
 		SERVICE <http://de.dbpedia.org/sparql/> {
 
 			?university rdfs:label ?label;
-						rdfs:comment ?comment;
-					    dbpedia-owl:locationCity ?city;
-		    			owl:sameAs ?wikidataURI.
+				rdfs:comment ?comment;
+				dbpedia-owl:locationCity ?city;
+		    		owl:sameAs ?wikidataURI.
+		    	
+		    	?city owl:sameAs ?citySameAsURI
+		    	
       		OPTIONAL {
-            	?university dbo:abstract ?abstract.
-  			}
+            		?university dbo:abstract ?abstract.
+  		}
       		OPTIONAL {
-            	?university foaf:homepage ?homepage.
-  			}
+            		?university foaf:homepage ?homepage.
+  		}
       		OPTIONAL {
-            	?university dbpedia-owl:thumbnail ?thumbnail.
-  			}
+            		?university dbpedia-owl:thumbnail ?thumbnail.
+  		}
     		OPTIONAL{
       			?university dbpedia-owl:numberOfStudents ?numberOfStudents;
 		        dbpedia-owl:staff ?numberOfStaff;
         		<http://de.dbpedia.org/property/davonProfessoren> ?numberOfProf.
     		}
     		OPTIONAL{
-    		    ?university <http://de.dbpedia.org/property/gründungsdatum> ?foundingDate
+    			?university <http://de.dbpedia.org/property/gründungsdatum> ?foundingDate
     		}
 
     		FILTER regex(?wikidataURI,'^http://wikidata.org/entity/','i')
     		BIND(URI(REPLACE(STR(?wikidataURI), "http://", "http://www.")) AS ?wikidataURINew)
+    		
+    		FILTER regex(?citySameAsURI,'^http://wikidata.org/entity/','i')
+    		BIND(URI(REPLACE(STR(?citySameAsURI), "http://", "http://www.")) AS ?cityWikiDataURI)
 		}
-  		OPTIONAL {
-			SERVICE <http://query.wikidata.org/sparql> {
-				?wikidataURINew wdt:P625 ?geoLatLon.
-				BIND(STR(?geoLatLon) AS ?geoLatLonStr)
-                BIND(STRBEFORE(STRAFTER(?geoLatLonStr, "Point("), " ") AS ?lat)
-                BIND(STRBEFORE(STRAFTER(?geoLatLonStr, " "), ")") AS ?long)
-  			}
-  		}
+		SERVICE <http://query.wikidata.org/sparql> {
+			?wikidataURINew wdt:P625 ?geoLatLon.
+			BIND(STR(?geoLatLon) AS ?geoLatLonStr)
+               		BIND(STRBEFORE(STRAFTER(?geoLatLonStr, "Point("), " ") AS ?lat)
+               		BIND(STRBEFORE(STRAFTER(?geoLatLonStr, " "), ")") AS ?long)
+               		
+               		?cityWikiDataURI rdfs:label ?cityLabelLang.
+               		FILTER (langMatches(lang(?cityLabelLang),"de"))
+			BIND (str(?cityLabelLang) AS ?cityLabel)
+		}
+	}
     }
 ```
 
