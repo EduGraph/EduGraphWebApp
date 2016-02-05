@@ -142,6 +142,11 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         },
         layers: {
             baselayers: {
+                hotosm: {
+                    name: 'HOTOSM',
+                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                },
                 toner: {
                     name: 'Stamen Toner',
                     url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
@@ -150,11 +155,6 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
                 watercolor: {
                     name: 'Watercolor',
                     url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-                    type: 'xyz'
-                },
-                hotosm: {
-                    name: 'HOTOSM',
-                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                     type: 'xyz'
                 }
             },
@@ -166,7 +166,18 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
                 }
             }
         },
+        maxbounds: {
+            northEast: {
+                lat: 55.4524,
+                lng: 17.644
+            },
+            southWest: {
+                lat: 45.6179,
+                lng: 5.2295
+            }
+        },
         defaults: {
+            minZoom: 5,
             scrollWheelZoom: true
         }
     });
