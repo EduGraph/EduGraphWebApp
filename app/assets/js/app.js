@@ -7,7 +7,7 @@ var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'ngRoute', 
 
 studysearchApp.constant("studysearchConfig", {
     //"sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query"
-    "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraph/query",
+    "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphEnrichment/query",
     "cacheSPARQLQueries": true
 });
 
