@@ -44,7 +44,8 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
             controller: 'MapCtrl'
         })
         .otherwise({
-            redirectTo: '/'
+            templateUrl: 'templates/404.tpl.html',
+            controller: 'Error404Ctrl'
         });
 });
 
