@@ -9,7 +9,8 @@
     "angular-leaflet-directive": "0.10.*",
     "angular-loading-bar": "0.8.*",
     "leaflet.markercluster": "0.4.*",
-    "material-design-icons": "*"
+    "material-design-icons": "*",
+    "angular-chart.js": "^0.8.8"
   },
   "private": "true"
 }

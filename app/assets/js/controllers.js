@@ -95,8 +95,22 @@ studysearchApp.controller('SearchCtrl', function($scope){
 
 });
 
+
 studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEvents, leafletData, $mdSidenav, SPARQLQueryService, $timeout){
     $scope.universities = [];
+
+
+    // Info Card
+
+    $scope.labels = ["Infomatik", "Wirtschaftsinformatik", "Betriebswirtschaft"];
+    $scope.data = [0.23, 0.2, 0.41];
+
+    $scope.radar_labels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
+    $scope.radar_data = [[0.23, 0.2, 0.23, 0.41, 0.23]];
+
+    this.isOpen = false;
+
+    // Info Card End
 
     // Aufruf des SPARQL Endpoint
     $scope.queryUniversity = function(){
@@ -221,6 +235,10 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         });
     });
     console.log($scope);
+
+
+
+
 });
 
 studysearchApp.controller('Error404Ctrl', function($scope, $location){
