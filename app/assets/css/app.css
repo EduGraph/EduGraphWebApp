@@ -9,3 +9,11 @@
 main {
     height: 100%;
 }
+
+.studysearch-main-navigation,
+.studysearch-main-navigation.md-locked-open,
+.studysearch-main-navigation.md-closed.md-locked-open-add-active {
+    min-width: 0px !important;
+    width: auto !important;
+    max-width: 150px !important;
+}

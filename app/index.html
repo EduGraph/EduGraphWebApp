@@ -10,6 +10,7 @@
 
         <!-- Styles -->
         <link type="text/css" rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+        <link type="text/css" rel="stylesheet" href="bower_components/material-design-icons/iconfont/material-icons.css">
         <link type="text/css" rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
         <link type="text/css" rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.css">
         <link type="text/css" rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
@@ -20,16 +21,35 @@
 
     </head>
     <body layout="row">
-        <md-sidenav flex md-is-locked-open="$mdMedia('gt-md')">
-            <md-toolbar><h1>StudySearch</h1></md-toolbar>
+        <md-sidenav class="studysearch-main-navigation" flex md-is-locked-open="true">
+            <md-toolbar layout-padding>
+                <div>
+                    <img src="assets/images/edugraph-logo.png" style="height: 120px">
+                </div>
+            </md-toolbar>
             <md-content>
-                <md-button>Link1</md-button>
+                <md-button href="./">
+                    <md-icon md-font-library="material-icons" aria-label="Startseite">home</md-icon>
+                    Startseite
+                </md-button>
+                <!--<md-button href="./courses">
+                    <md-icon md-font-library="material-icons" aria-label="Kurse">list</md-icon>
+                    Kurse
+                </md-button>-->
+                <md-button href="./map">
+                    <md-icon md-font-library="material-icons" aria-label="Karte">map</md-icon>
+                    Karte
+                </md-button>
+                <md-button href="./imprint">
+                    <md-icon md-font-library="material-icons" aria-label="Impressum">face</md-icon>
+                    Impressum
+                </md-button>
             </md-content>
         </md-sidenav>
         <md-sidenav flex md-component-id="info-sidenav">
             Additional Info
         </md-sidenav>
-        <main flex ng-view>
+        <main flex layout="row" ng-view>
         </main>
 
         <!-- AngularJS -->

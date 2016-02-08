@@ -1,5 +1,21 @@
-studysearchApp.controller('InstitutionListCtrl', function($scope, SPARQLQueryService) {
-    $scope.universities = SPARQLQueryService.getUniversities();
+studysearchApp.controller('CourseListCtrl', function($scope, SPARQLQueryService) {
+    $scope.courses = [
+        {
+            courseName: 'Wirtschaftsinformatik',
+            courseDescription: 'Die Wirtschaftsinformatik ist eine Wissenschaft, die sich mit Entwicklung und Anwendung von Informations- und Kommunikationssystemen in Wirtschaftsunternehmen befasst.'
+        }
+    ];
+
+    $scope.queryCourses = function(){
+        $scope.courses= SPARQLQueryService.getCourses().then(
+            function successCallback(response) {
+                console.log(response);
+            },
+            function errorCallback(response) {
+                console.log(response);
+            }
+        );
+    }
 });
 
 studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQLQueryService) {
@@ -27,7 +43,6 @@ studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQ
      * hinzu.
      */
     $scope.addMarker = function(name, latitude, longitude, message){
-
         angular.extend($scope, {
             markers: {
                 marker: {
@@ -206,4 +221,8 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         });
     });
     console.log($scope);
+});
+
+studysearchApp.controller('Error404Ctrl', function($scope, $location){
+    $scope.errorURL = $location.absUrl();
 });

@@ -1,1 +1,21 @@
-<leaflet id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds"></leaflet>
+<leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds"></leaflet>
+<md-sidenav md-is-locked-open="true" flex layout="column">
+    <md-toolbar flex="20">
+        <h2>Hochschulliste</h2>
+    </md-toolbar>
+    <md-content flex="20">
+    <form name="universityFilterForm">
+        <span layout="row"><md-checkbox>BWL</md-checkbox></span>
+        <span layout="row"><md-checkbox>Informatik</md-checkbox></span>
+        <span layout="row"><md-checkbox>Wirtschaftsinformatik</md-checkbox></span>
+    </form>
+    </md-content>
+    <md-content flex="60">
+        <md-list>
+            <md-list-item ng-repeat="university in universities">
+                {{university.universityLabel}}
+            </md-list-item>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list>
+    </md-content>
+</md-sidenav>

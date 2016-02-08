@@ -1,0 +1,13 @@
+<md-toolbar class="md-primary md-hue-1">
+    <h2>Kursansicht</h2>
+</md-toolbar>
+<md-grid-list md-cols="3" md-cols-xs="1" md-cols-sm="2"
+              md-row-height="1:1"
+              md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile class="red" ng-repeat="course in courses">
+        <md-grid-tile-footer>
+            <h3>{{course.courseName}}</h3>
+            <!--<p>{{course.courseDescription}}</p>-->
+        </md-grid-tile-footer>
+    </md-grid-tile>
+</md-grid-list>
