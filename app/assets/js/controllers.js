@@ -99,11 +99,10 @@ studysearchApp.controller('SearchCtrl', function($scope){
 studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEvents, leafletData, $mdSidenav, SPARQLQueryService, $timeout){
     $scope.universities = [];
 
-
     // Info Card
-
-    $scope.labels = ["Infomatik", "Wirtschaftsinformatik", "Betriebswirtschaft"];
-    $scope.data = [0.23, 0.2, 0.41];
+    $scope.labels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
+    $scope.data = [0.16, 0.2, 0.41, 0.23];
+    $scope.colours = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
 
     $scope.radar_labels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
     $scope.radar_data = [[0.23, 0.2, 0.23, 0.41, 0.23]];
