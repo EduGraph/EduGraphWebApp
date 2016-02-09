@@ -1,78 +1,209 @@
-<md-content layout-padding>
-    <h1>Finde den passenden Wirtschaftsinformatik-Studiengang</h1>
-    <div>
-        <div layout="row">
-            <div flex="40" layout="column">
-                <h2>Welcher Beruf?</h2>
-                <md-card flex="20" layout-align="center center" class="JobProfileADM">
-                    <md-card-content>
-                        <h2>Administration</h2>
-                    </md-card-content>
-                </md-card>
+<div flex layout="column" tabIndex="-1">
+    <md-toolbar class="header">
+        <div class="md-toolbar-tools toolbar-header">
 
-                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileCON">
-                    <md-card-content>
-                        <h2>Beratung</h2>
-                    </md-card-content>
-                </md-card>
-
-                <md-card flex="20" layout-align="center center" class="JobProfileINF">
-                    <md-card-content>
-                        <h2>Informatik</h2>
-                    </md-card-content>
-                </md-card>
-
-                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileITM">
-
-                    <div style="position:absolute; right:0; top:0;">
-                        <md-checkbox class="md-primary"></md-checkbox>
-                    </div>
-                    <md-card-content>
-                        <h2>IT-Management</h2>
-                    </md-card-content>
-                </md-card>
-
-                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileSWE">
-                    <md-card-content >
-                        <h2>SW-Entwicklung</h2>
-                    </md-card-content>
-                </md-card>
-
+            <div class="logo" >
+                <img src="assets/images/edugraph-logo.png"/>
+                <span>Study<b>Search</b></span>
             </div>
+            <span flex></span>
+            <h3 >
+                <md-button href="./map">Studiengänge</md-button>
+                <md-button href="./dashboard">Dashboard</md-button>
+                <md-button href="./faq">FAQ</md-button>
+            </h3>
 
-            <div flex="20" layout="column" layout-align="center center">
-                <h3>ODER</h3>
-            </div>
-
-            <div flex="40" layout="column">
-                <h2>Welcher Schwerpunkt?</h2>
-
-                <md-card flex="33" class="pillar-bam" layout-align="center center" md-whiteframe="24">
-                    <md-card-content>
-                        <h2>Betriebswirtschaftslehre</h2>
-                    </md-card-content>
-                </md-card>
-
-                <md-card flex="33" class="pillar-bis" layout-align="center center">
-                    <md-card-content>
-                        <h2>Wirtschaftsinformatik</h2>
-                    </md-card-content>
-                </md-card>
-
-                <md-card flex="33" class="pillar-csc" layout-align="center center">
-                    <md-card-content>
-                        <h2>Informatik</h2>
-                    </md-card-content>
-                </md-card>
-            </div>
         </div>
+    </md-toolbar>
 
-        <div layout="row" layout-align="center center" style="padding-top:30px;">
-            <md-button class="md-raised md-primary">Finde deinen Traum-Studiengang</md-button>
+    <md-content>
+
+
+
+    <div class="cover-page" layout-align="center center">
+
+        <div>
+            <h1>Eine Plattform für Studiengänge der Wirtschaftsinformatik</h1>
+            <h2>Finde einen Studienplatz der zu deiner beruflichen Zukunft passt.</h2>
+
+            <md-button href="#jump" class="md-raised md-primary">Wähle aus Jobs und Schwerpunkten aus</md-button>
         </div>
     </div>
 
-    <md-checkbox ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox>
-    <md-checkbox ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox>
-    <md-checkbox ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox>
-</md-content>
+    <div>
+
+        <div flex="70" style="text-align: center; margin:10px auto;" layout="column">
+
+            <md-card class="md-whiteframe-2dp" flex="none">
+
+                <h1>Wirtschaftsinformatik</h1>
+
+            </md-card>
+
+            <div layout="row" flex="grow">
+
+                <md-card flex="40" layout="column" class="jobProfiles md-whiteframe-2dp">
+                    <h2 flex="5">Jobprofil</h2>
+
+                    <md-card flex="auto" class="JobProfileADM" layout-align="center center" layout="row">
+                        <div flex="33">
+                            <img src="http://www.impactauh.ae/wp-content/uploads/2014/01/server_mait.jpg">
+                        </div>
+                        <div flex="66">
+                            <h2> Administration </h2>
+                        </div>
+                    </md-card>
+
+                    <md-card flex="auto" class="JobProfileCON" layout-align="center center" layout="row">
+                        <div flex="33">
+                            <img src="http://www.cpr-pa.com/wp-content/uploads/2013/01/photodune-5828554-consulting-l.jpg">
+                        </div>
+                        <div flex="66">
+                            <h2> Beratung </h2>
+                        </div>
+                    </md-card>
+
+                    <md-card flex="auto" class="JobProfileCON" layout-align="center center" layout="row">
+                        <div flex="33">
+                            <img src="assets/images/jobprofiles/informatik.jpg">
+                        </div>
+                        <div flex="66">
+                            <h2> Informatik </h2>
+                        </div>
+                    </md-card>
+
+                    <md-card flex="auto" class="JobProfileCON" layout-align="center center" layout="row">
+                        <div flex="33">
+                            <img src="assets/images/jobprofiles/it-management.jpeg">
+                        </div>
+                        <div flex="66">
+                            <h2> IT-Management </h2>
+                        </div>
+                    </md-card>
+
+                    <md-card flex="auto" class="JobProfileCON" layout-align="center center" layout="row">
+                        <div flex="33">
+                            <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                        </div>
+                        <div flex="66">
+                            <h2> SW-Entwicklung </h2>
+                        </div>
+                    </md-card>
+
+<!--
+                    <md-card flex="auto" class="JobProfileADM" layout-align="center center">
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                            <img src="http://www.impactauh.ae/wp-content/uploads/2014/01/server_mait.jpg">
+                        </md-card-title-media>
+                        <md-card-content>
+                            <h2>Administration</h2>
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card flex="auto" layout-align="center center" class="JobProfileCON">
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                            <img src="http://www.cpr-pa.com/wp-content/uploads/2013/01/photodune-5828554-consulting-l.jpg">
+                        </md-card-title-media>
+                        <md-card-content>
+                            <h2>Beratung</h2>
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card flex="auto" layout-align="center center" class="JobProfileINF">
+
+                        <md-card-title>
+                            <md-card-title-media>
+                                <img src="assets/images/jobprofiles/informatik.jpg">
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-headline">Informatik</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+
+                        </md-card-title-media>
+
+                        <md-card-content>
+                            <h2>Informatik</h2>
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card flex="auto" layout-align="center center" class="JobProfileITM">
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                            <img src="assets/images/jobprofiles/it-management.jpeg">
+                        </md-card-title-media>
+
+                        <md-card-content>
+                            <h2>IT-Management</h2>
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card flex="auto" layout-align="center center" class="JobProfileSWE">
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                            <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                        </md-card-title-media>
+                        <md-card-content >
+                            <h2>SW-Entwicklung</h2>
+                        </md-card-content>
+                    </md-card>
+                -->
+                </md-card>
+
+                <div flex="20" layout="column" layout-align="center center">
+                    <h3>ODER</h3>
+                </div>
+
+                <md-card flex="40" layout="column" class="pillars md-whiteframe-2dp">
+
+                        <h2>Schwerpunkt</h2>
+
+                    <div flex layout="column">
+
+                    <md-button flex="33" class="pillar-bam" layout-align="center center">
+
+                        <md-checkbox ng-model="$parent.filter.pillars.BAM" class="round"></md-checkbox>
+
+                        <md-button class="md-fab md-primary md-mini">
+                            <md-icon md-font-library="material-icons" aria-label="Betriebswirtschaftslehre">insert_chart</md-icon>
+                        </md-button>
+                        <h2>Betriebswirtschaftslehre</h2>
+                    </md-button>
+
+                    <md-button flex="33" class="pillar-bis" layout-align="center center">
+                        <md-checkbox ng-model="$parent.filter.pillars.BIS" class="round"></md-checkbox>
+
+                        <md-button class="md-fab md-primary md-mini">
+                            <md-icon md-font-library="material-icons" aria-label="Informatik">merge_type</md-icon>
+                        </md-button>
+                        <h2>Wirtschaftsinformatik</h2>
+                    </md-button>
+
+                    <md-button flex="33" class="pillar-csc" layout-align="center center">
+                        <md-checkbox ng-model="$parent.filter.pillars.CSC" class="round"></md-checkbox>
+                        <md-button class="md-fab md-mini md-primary">
+                            <md-icon md-font-library="material-icons" aria-label="Informatik">code</md-icon>
+                        </md-button>
+
+                        <h2>Informatik</h2>
+
+                    </md-button>
+                    </div>
+                </md-card>
+            </div>
+
+            <div flex="none">
+
+                <md-button href="#jump" class="md-raised md-primary">Finde deinen Studiengang</md-button>
+
+            </div>
+
+        </div>
+    </div>
+    </md-content>
+
+</div>

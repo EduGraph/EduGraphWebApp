@@ -54,11 +54,11 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
  * Konfiguration des Angular Material Themes.
  */
 studysearchApp.config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('default');
-    /*    .primaryPalette('deep-orange')
-        .accentPalette('deep-orange')
-        .warnPalette('deep-orange')
-        .backgroundPalette('deep-orange');*/
+    $mdThemingProvider.theme('default')
+        .primaryPalette('green')
+        .accentPalette('teal')
+        .warnPalette('red');
+       /* .backgroundPalette('light-green');*/
 });
 
 /*

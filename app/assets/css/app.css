@@ -2,6 +2,11 @@
  * app.css
  */
 
+body{
+    background-color:#ECEFF1;
+
+}
+
 .angular-leaflet-map {
     height: 100%;
 }
@@ -9,6 +14,41 @@
 main {
     height: 100%;
 }
+
+md-toolbar.header{
+    /*background-color:white;*/
+    color:white;
+}
+
+.toolbar-header .logo{
+    font-family: "Montserrat", "Arial Narrow Bold", sans-serif;
+
+}
+.toolbar-header .logo img{
+    vertical-align:middle;
+    max-height:60px
+}
+
+
+.cover-page {
+
+    position: relative;
+    width:100%;
+    min-height:700px;
+    background-color:black;
+    color:white;
+    text-align:center;
+    display: flex;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);
+    background-size: cover;
+}
+
+.cover-page .text{
+
+
+}
+
+
 
 .studysearch-main-navigation,
 .studysearch-main-navigation.md-locked-open,
@@ -51,10 +91,24 @@ main {
     /*transform: rotate(151.2deg);*/
 }
 
-.JobProfiles{
+
+
+
+
+md-card-title-media img{
 
 }
 
+.jobProfiles md-card {
+    position:relative;
+    /*opacity: 0.4;*/
+    background-color:darkslategrey;
+    color:#fff;
+}
+
+.jobProfiles md-card:hover{
+    opacity: 1;
+}
 
 .JobProfileADM{
 
@@ -73,9 +127,21 @@ main {
 
 }
 
+.pillars, .jobProfiles{
+    padding:40px;
+}
 
-.pillars{
 
+.pillars md-button {
+    position:relative;
+    /*opacity: 0.4;*/
+}
+
+
+
+.pillars md-button:hover {
+
+    opacity: 1;
 }
 
 .pillar-bam {
@@ -84,18 +150,32 @@ main {
 
 .pillar-csc {
     background-color: #97BBCD;
+
 }
 
 .pillar-bis{
     background-color: #F7464A;
 }
 
+.pillars md-checkbox{
+    position: absolute;
+    top: 10px;
+    right:5px;
+}
 
+.pillars md-checkbox .md-icon {
+    border-radius: 50%;
+}
+
+.pillars md-checkbox.md-checked .md-icon{
+    background-color: #009688;
+
+}
 
 
 footer{
     position:fixed;
-    bottom:20px;
+    bottom:1px;
     left:0px;
     width:100%;
     color:#000;
@@ -143,3 +223,5 @@ footer{
         transform: scale(1.1);
     }
 }
+
+
