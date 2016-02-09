@@ -1,14 +1,77 @@
 <md-content layout-padding>
-    <h1>StudySearch - WebApp</h1>
-    <p>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-    </p>
-    <p>
-    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-    </p>
-    <p>
-    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-    </p>
+    <h1>Finde den passenden Wirtschaftsinformatik-Studiengang</h1>
+    <div>
+        <div layout="row">
+            <div flex="40" layout="column">
+                <h2>Welcher Beruf?</h2>
+                <md-card flex="20" layout-align="center center" class="JobProfileADM">
+                    <md-card-content>
+                        <h2>Administration</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileCON">
+                    <md-card-content>
+                        <h2>Beratung</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="20" layout-align="center center" class="JobProfileINF">
+                    <md-card-content>
+                        <h2>Informatik</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileITM">
+
+                    <div style="position:absolute; right:0; top:0;">
+                        <md-checkbox class="md-primary"></md-checkbox>
+                    </div>
+                    <md-card-content>
+                        <h2>IT-Management</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="20" md-whiteframe="24" layout-align="center center" class="JobProfileSWE">
+                    <md-card-content >
+                        <h2>SW-Entwicklung</h2>
+                    </md-card-content>
+                </md-card>
+
+            </div>
+
+            <div flex="20" layout="column" layout-align="center center">
+                <h3>ODER</h3>
+            </div>
+
+            <div flex="40" layout="column">
+                <h2>Welcher Schwerpunkt?</h2>
+
+                <md-card flex="33" class="pillar-bam" layout-align="center center" md-whiteframe="24">
+                    <md-card-content>
+                        <h2>Betriebswirtschaftslehre</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="33" class="pillar-bis" layout-align="center center">
+                    <md-card-content>
+                        <h2>Wirtschaftsinformatik</h2>
+                    </md-card-content>
+                </md-card>
+
+                <md-card flex="33" class="pillar-csc" layout-align="center center">
+                    <md-card-content>
+                        <h2>Informatik</h2>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+
+        <div layout="row" layout-align="center center" style="padding-top:30px;">
+            <md-button class="md-raised md-primary">Finde deinen Traum-Studiengang</md-button>
+        </div>
+    </div>
+
     <md-checkbox ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox>
     <md-checkbox ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox>
     <md-checkbox ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox>
