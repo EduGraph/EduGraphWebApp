@@ -3,7 +3,7 @@
  *
  * Definition der Web Applikation und ihrer Abhängigkeiten, sowie Konfiguration (Routing).
  */
-var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'ngRoute', 'leaflet-directive', 'angular-loading-bar', 'ngAnimate']);
+var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'chart.js', 'ngRoute', 'leaflet-directive', 'angular-loading-bar', 'ngAnimate']);
 
 studysearchApp.constant("studysearchConfig", {
     //"sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query"
