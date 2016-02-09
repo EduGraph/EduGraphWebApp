@@ -148,15 +148,16 @@
 </md-sidenav>
 
 <leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds"></leaflet>
+
 <md-sidenav md-is-locked-open="true" flex layout="column">
     <md-toolbar flex="20">
         <h2>Hochschulliste</h2>
     </md-toolbar>
     <md-content flex="20">
     <form name="universityFilterForm">
-        <span layout="row"><md-checkbox>BWL</md-checkbox></span>
-        <span layout="row"><md-checkbox>Informatik</md-checkbox></span>
-        <span layout="row"><md-checkbox>Wirtschaftsinformatik</md-checkbox></span>
+        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
+        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
     </form>
     </md-content>
     <md-content flex="60">

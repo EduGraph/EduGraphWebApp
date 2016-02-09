@@ -1,3 +1,23 @@
+/*
+ * Top-Level Controller für die Steuerung anwendungsübergreifender Programmteile
+ */
+studysearchApp.controller('AppCtrl', function($scope){
+    $scope.filter = {
+        'pillars': {
+            'BAM': true, // Business Administration Management
+            'BIS': false, // Business Information Systems
+            'CSC': false // Computer Science
+        },
+        jobProfile: {
+            'ADM': false,
+            'CON': false,
+            'INF': false,
+            'ITM': false,
+            'SWE': false
+        }
+    };
+});
+
 studysearchApp.controller('CourseListCtrl', function($scope, SPARQLQueryService) {
     $scope.courses = [
         {
@@ -91,11 +111,6 @@ studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQ
     $scope.queryUniversity();
 });
 
-studysearchApp.controller('SearchCtrl', function($scope){
-
-});
-
-
 studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEvents, leafletData, $mdSidenav, SPARQLQueryService, $timeout){
     $scope.universities = [];
 
@@ -108,28 +123,32 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.radar_labels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
     $scope.radar_data = [[0.23, 0.2, 0.23, 0.41, 0.23]];
 
-    this.isOpen = false;
+    $scope.isOpen = false;
 
     // Info Card End
 
-    // Aufruf des SPARQL Endpoint
     $scope.queryUniversity = function(){
-        SPARQLQueryService.getUniversities().then(
+        var options = {};
+        options.filter = $scope.$parent.filter;
+        // Aufruf des SPARQL Endpoint über die SPARQLQueryService
+        SPARQLQueryService.getUniversities(options).then(
+            // Funktion bei Erfolg
             function successCallback(response) {
+                // Leeren des aktuellen Universities Scope
+                $scope.universities = [];
+                $scope.markers = {};
                 var responseData = response.data.results.bindings;
-                //console.log("ResponseData:", responseData);
                 for (var arrayElement in responseData) {
                     var tmpObject = {};
-                    //console.log("ArrayElement:", responseData[arrayElement]);
                     for (var objectProperty in responseData[arrayElement]) {
-                        //console.log("ObjectProperty:", responseData[arrayElement][objectProperty]);
                         tmpObject[objectProperty] = responseData[arrayElement][objectProperty].value
                     }
                     $scope.universities.push(tmpObject);
+                    // Hinzufügen der Marker auf der Karte
                     $scope.addMarker("marker"+$scope.universities.length, parseFloat(tmpObject.universityLatitude), parseFloat(tmpObject.universityLongitude), tmpObject.universityLabel, tmpObject.universityURI);
                 }
-                console.log($scope.universities);
             },
+            // Funktion bei Fehler
             function errorCallback(response) {
                 console.log(response);
             }
@@ -235,9 +254,6 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         });
     });
     console.log($scope);
-
-
-
 
 });
 
