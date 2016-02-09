@@ -8,7 +8,8 @@ var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'chart.js',
 studysearchApp.constant("studysearchConfig", {
     //"sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query"
     "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphEnrichment/query",
-    "cacheSPARQLQueries": true
+    "cacheSPARQLQueries": false,
+    "pillarEmphasisValue": 0.3
 });
 
 /*

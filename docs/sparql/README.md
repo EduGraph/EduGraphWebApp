@@ -14,3 +14,11 @@ Variable | Beschreibung
 ?universityLocationLabel | Name des Ortes der Universität
 ?universityLocationLatitude | Breitengrad des Ortes der Universität
 ?universityLocationLongitude | Längengrad des Ortes der Universität
+?degreeProgramURI | URI des Studiengangs
+?degreeProgramLabel | Name des Studiengangs
+?degreeProgramHomepage | Homepage des Studiengangs
+?degreeProgramCreditPoints | ECTS Credit Points des Studiengangs
+?degreeProgramPeriodOfStudy | Studienlänge des Studiengangs
+?degreeProgramBAMPillar | Anteil der Business Administration Management Säule
+?degreeProgramBISPillar | Anteil der Business Information Systems Säule
+?degreeProgramCSCPillar | Anteil der Computer Science Säule
