@@ -105,25 +105,25 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             baselayers: {
                 hotosm: {
                     name: 'HOTOSM',
-                        url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-                        type: 'xyz'
+                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                    type: 'xyz'
                 },
                 toner: {
                     name: 'Stamen Toner',
-                        url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
-                        type: 'xyz'
+                    url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+                    type: 'xyz'
                 },
                 watercolor: {
                     name: 'Watercolor',
-                        url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-                        type: 'xyz'
+                    url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
+                    type: 'xyz'
                 }
             },
             overlays: {
                 universityLayer: {
                     name: 'CollegeOrUniversity',
-                        type: 'markercluster',
-                        visible: true
+                    type: 'markercluster',
+                    visible: true
                 }
             }
         },

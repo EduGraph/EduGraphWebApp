@@ -31,7 +31,8 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
     // Route Provider
     $routeProvider
         .when('/', {
-            templateUrl: 'templates/main.tpl.html'
+            templateUrl: 'templates/main.tpl.html',
+            controller: 'MainCtrl'
         })
         .when('/map', {
             templateUrl: 'templates/map.tpl.html',
@@ -47,11 +48,11 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
  * Konfiguration des Angular Material Themes.
  */
 studysearchApp.config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('default');
-    /*    .primaryPalette('deep-orange')
-        .accentPalette('deep-orange')
-        .warnPalette('deep-orange')
-        .backgroundPalette('deep-orange');*/
+    $mdThemingProvider.theme('default')
+        .primaryPalette('green')
+        .accentPalette('teal')
+        .warnPalette('red');
+       /* .backgroundPalette('light-green');*/
 });
 
 /*
