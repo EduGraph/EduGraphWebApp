@@ -30,7 +30,7 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'templates/main.tpl.html',
-            controller: 'MapCtrl'
+            controller: 'MainCtrl'
         })
         .when('/university/:universityUri', {
             templateUrl: 'templates/university.tpl.html',

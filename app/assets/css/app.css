@@ -39,13 +39,110 @@ md-toolbar.header{
     color:white;
     text-align:center;
     display: flex;
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);
+    background-image: url(http://www.wu.ac.at/fileadmin/wu/h/press/Pressebilder/campus_wu_c_johannes_zinner.jpg);
+    /*background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);*/
     background-size: cover;
 }
 
 .cover-page .text{
+    padding:20px;
+    background:rgba(0,0,0,0.6)
+}
 
 
+.pillars, .jobProfiles{
+    padding:40px;
+}
+
+.pillars md-checkbox{
+    position: absolute;
+    top: 10px;
+    right:5px;
+}
+
+.jobProfiles md-checkbox{
+    margin:auto;
+}
+
+.jobProfiles md-checkbox .md-icon,
+.pillars md-checkbox .md-icon {
+    border-radius: 50%;
+}
+
+.jobProfiles md-checkbox.md-checked .md-icon,
+.pillars md-checkbox.md-checked .md-icon{
+    background-color: #009688;
+    color:#fff;
+
+}
+
+.jobProfiles md-button,
+.pillars md-button {
+    position:relative;
+    /*opacity: 0.4;*/
+}
+
+
+md-card-title-media img{
+
+}
+
+.jobProfiles md-button,
+.jobProfiles md-card {
+    background-color:teal;
+    color:#fff;
+}
+
+.jobProfiles md-card:hover{
+    opacity: 1;
+}
+
+
+.jobProfiles button {
+     padding:0;
+     background:#546E7A;
+     color:#fff;
+ }
+
+.jobProfiles button:not([disabled]):hover {
+    padding:0;
+    background:teal;
+    color:#000;
+
+
+}
+
+.JobProfileADM{
+
+}
+.JobProfileCON{
+
+}
+.JobProfileINF{
+
+}
+.JobProfileITM{
+
+}
+.JobProfileSWE{
+
+}
+
+
+.pillars md-button:hover {
+    opacity: 1;
+}
+
+.pillar-bam {
+    background-color: #FDB45C;
+}
+
+.pillar-csc {
+    background-color: #97BBCD;
+}
+
+.pillar-bis{
+    background-color: #F7464A;
 }
 
 
@@ -95,82 +192,6 @@ md-toolbar.header{
 
 
 
-md-card-title-media img{
-
-}
-
-.jobProfiles md-card {
-    position:relative;
-    /*opacity: 0.4;*/
-    background-color:darkslategrey;
-    color:#fff;
-}
-
-.jobProfiles md-card:hover{
-    opacity: 1;
-}
-
-.JobProfileADM{
-
-}
-.JobProfileCON{
-
-}
-.JobProfileINF{
-
-}
-.JobProfileITM{
-
-}
-
-.JobProfileSWE{
-
-}
-
-.pillars, .jobProfiles{
-    padding:40px;
-}
-
-
-.pillars md-button {
-    position:relative;
-    /*opacity: 0.4;*/
-}
-
-
-
-.pillars md-button:hover {
-
-    opacity: 1;
-}
-
-.pillar-bam {
-    background-color: #FDB45C;
-}
-
-.pillar-csc {
-    background-color: #97BBCD;
-
-}
-
-.pillar-bis{
-    background-color: #F7464A;
-}
-
-.pillars md-checkbox{
-    position: absolute;
-    top: 10px;
-    right:5px;
-}
-
-.pillars md-checkbox .md-icon {
-    border-radius: 50%;
-}
-
-.pillars md-checkbox.md-checked .md-icon{
-    background-color: #009688;
-
-}
 
 
 footer{

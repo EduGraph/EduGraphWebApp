@@ -38,6 +38,16 @@ studysearchApp.controller('CourseListCtrl', function($scope, SPARQLQueryService)
     }
 });
 
+studysearchApp.controller('MainCtrl', function($scope) {
+
+    $scope.toggleCheckBox = function(group, id){
+        $scope.$parent.filter[group][id] = $scope.$parent.filter[group][id] ? false : true;
+    };
+
+
+
+});
+
 studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQLQueryService) {
     $scope.university = {};
 
