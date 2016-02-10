@@ -23,6 +23,17 @@ studysearchApp.controller('AppCtrl', function($scope){
 });
 
 /*
+ * Startseiten Controller
+ *
+ * Controller für die Startseite
+ */
+studysearchApp.controller('MainCtrl', function($scope) {
+    $scope.toggleCheckBox = function(group, id){
+        $scope.$parent.filter[group][id] = $scope.$parent.filter[group][id] ? false : true;
+    };
+});
+
+/*
  * Karten Controller
  *
  * Controller für die Kartenansicht.

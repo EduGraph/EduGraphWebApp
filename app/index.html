@@ -21,8 +21,18 @@
         <link type="text/css" rel="stylesheet" href="assets/css/app.css">
 
     </head>
-    <body ng-controller="AppCtrl" layout="row">
-        <md-sidenav class="studysearch-main-navigation" flex md-is-locked-open="true">
+    <body ng-controller="AppCtrl" layout="column">
+        <md-toolbar layout="row" layout-padding layout-align="center center" class="header toolbar-header">
+                <div class="logo" layout="row" layout-align="center center">
+                    <img src="assets/images/edugraph-logo.png">
+                    <span>Study<b>Search</b></span>
+                </div>
+                <span flex></span>
+                <md-button href="./"><md-icon md-font-library="material-icons" aria-label="Startseite">home</md-icon> Startseite</md-button>
+                <md-button href="./map"><md-icon md-font-library="material-icons" aria-label="Karte">map</md-icon> Studiengänge</md-button>
+                <md-button href="./imprint"><md-icon md-font-library="material-icons" aria-label="Impressum">face</md-icon> Impressum</md-button>
+        </md-toolbar>
+        <!--<md-sidenav class="studysearch-main-navigation" flex md-is-locked-open="true">
             <md-toolbar layout-padding>
                 <div>
                     <img src="assets/images/edugraph-logo.png" style="height: 120px">
@@ -42,7 +52,7 @@
                     Impressum
                 </md-button>
             </md-content>
-        </md-sidenav>
+        </md-sidenav>-->
         <main flex layout="row" ng-view>
         </main>
 

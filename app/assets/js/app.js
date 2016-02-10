@@ -50,7 +50,7 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
 studysearchApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('green')
-        .accentPalette('teal')
+        .accentPalette('brown')
         .warnPalette('red');
        /* .backgroundPalette('light-green');*/
 });
