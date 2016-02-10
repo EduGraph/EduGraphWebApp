@@ -24,7 +24,7 @@ SELECT
     ?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude
     ?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude
 	?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy
-	?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar
+	?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE
 WHERE
 {
     ?universityURI a schema:CollegeOrUniversity;
@@ -46,9 +46,12 @@ WHERE
     ?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar;
      	bise:pillarBIS ?degreeProgramBISPillar;
      	bise:pillarCSC ?degreeProgramCSCPillar.
-  	#FILTER (?degreeProgramBAMPillar > 0.3)
-  	#FILTER (?degreeProgramBISPillar > 0.3)
-  	#FILTER (?degreeProgramCSCPillar > 0.3)
+	?rankingURI schema:itemReviewed  ?degreeProgramURI;
+		a schema:Rating;
+		schema:ratingValue ?degreeProgramRankingCHE.
+  	#FILTER (?degreeProgramBAMPillar >= 0.3)
+  	#FILTER (?degreeProgramBISPillar >= 0.3)
+  	#FILTER (?degreeProgramCSCPillar >= 0.3)
 
 	FILTER (langMatches(lang(?universityLabel_lang),"de"))
 	BIND (str(?universityLabel_lang) AS ?universityLabel)

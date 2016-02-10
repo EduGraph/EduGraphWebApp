@@ -44,7 +44,7 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 '	?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude ' +
                 '	?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude ' +
                 '   ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy ' +
-                '   ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ' +
+                '   ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE ' +
                 '{ ' +
                 '?universityURI a schema:CollegeOrUniversity; ' +
                 'rdfs:label ?universityLabel_lang; ' +
@@ -65,6 +65,9 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 '?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar; '+
                 '	bise:pillarBIS ?degreeProgramBISPillar; '+
                 '	bise:pillarCSC ?degreeProgramCSCPillar. '+
+                '?rankingURI schema:itemReviewed  ?degreeProgramURI; '+
+                '   a schema:Rating; '+
+                '   schema:ratingValue ?degreeProgramRankingCHE. '+
                 (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +

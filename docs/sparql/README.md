@@ -19,6 +19,7 @@ Variable | Beschreibung
 ?degreeProgramHomepage | Homepage des Studiengangs
 ?degreeProgramCreditPoints | ECTS Credit Points des Studiengangs
 ?degreeProgramPeriodOfStudy | Studienlänge des Studiengangs
+?degreeProgramRankingCHE | CHE Ranking des Studiengangs
 ?degreeProgramBAMPillar | Anteil der Business Administration Management Säule
 ?degreeProgramBISPillar | Anteil der Business Information Systems Säule
 ?degreeProgramCSCPillar | Anteil der Computer Science Säule
