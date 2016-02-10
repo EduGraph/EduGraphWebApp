@@ -23,46 +23,57 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 SELECT
     ?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude
     ?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude
-	?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy
-	?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE
+    ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy
+    ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE
+	?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE
 WHERE
 {
     ?universityURI a schema:CollegeOrUniversity;
-		rdfs:label ?universityLabel_lang;
-		foaf:homepage ?universityHomepage;
-		geo:lat ?universityLatitude;
-		geo:long ?universityLongitude;
-		schema:location ?universityLocationURI.
-	OPTIONAL {
-		?universityURI dbpedia-owl:thumbnail ?universitythumbnail;
-	}
+        rdfs:label ?universityLabel_lang;
+        foaf:homepage ?universityHomepage;
+        geo:lat ?universityLatitude;
+        geo:long ?universityLongitude;
+        schema:location ?universityLocationURI.
+    OPTIONAL {
+        ?universityURI dbpedia-owl:thumbnail ?universitythumbnail;
+    }
     ?degreeProgramURI a bise:BISEBachelor;
         schema:provider ?universityURI;
-    	bise:bisePillar ?degreeProgramPillars;
+        bise:bisePillar ?degreeProgramPillars;
         bise:cpECTS ?degreeProgramCreditPoints;
         bise:stPeriodOfStudy ?degreeProgramPeriodOfStudy;
         schema:name ?degreeProgramLabel;
         schema:url ?degreeProgramHomepage.
     ?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar;
-     	bise:pillarBIS ?degreeProgramBISPillar;
-     	bise:pillarCSC ?degreeProgramCSCPillar.
-	?rankingURI schema:itemReviewed  ?degreeProgramURI;
-		a schema:Rating;
-		schema:ratingValue ?degreeProgramRankingCHE.
-  	#FILTER (?degreeProgramBAMPillar >= 0.3)
-  	#FILTER (?degreeProgramBISPillar >= 0.3)
-  	#FILTER (?degreeProgramCSCPillar >= 0.3)
+        bise:pillarBIS ?degreeProgramBISPillar;
+        bise:pillarCSC ?degreeProgramCSCPillar.
+    ?rankingURI schema:itemReviewed  ?degreeProgramURI;
+        a schema:Rating;
+        schema:ratingValue ?degreeProgramRankingCHE.
+    #FILTER (?degreeProgramBAMPillar >= 0.3)
+    #FILTER (?degreeProgramBISPillar >= 0.3)
+    #FILTER (?degreeProgramCSCPillar >= 0.3)
+	BIND((?degreeProgramBAMPillar) AS ?degreeProgramJobADM)
+  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON)
+	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF)
+	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM)
+	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE)
+    #FILTER (?degreeProgramJobADM >= 0.3)
+    #FILTER (?degreeProgramJobCON >= 0.3)
+    #FILTER (?degreeProgramJobINF >= 0.3)
+    #FILTER (?degreeProgramJobITM >= 0.3)
+    #FILTER (?degreeProgramJobSWE >= 0.3)
 
-	FILTER (langMatches(lang(?universityLabel_lang),"de"))
-	BIND (str(?universityLabel_lang) AS ?universityLabel)
+    FILTER (langMatches(lang(?universityLabel_lang),"de"))
+    BIND (str(?universityLabel_lang) AS ?universityLabel)
 
-	?universityLocationURI rdfs:label ?universityLocationLabel_lang;
-		schema:geo [
-			schema:latitude ?universityLocationLatitude;
-			schema:longitude ?universityLocationLongitude;
-		]
+    ?universityLocationURI rdfs:label ?universityLocationLabel_lang;
+        schema:geo [
+            schema:latitude ?universityLocationLatitude;
+            schema:longitude ?universityLocationLongitude;
+        ]
 
-	FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
-	BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel)
+    FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
+    BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel)
 }
 ```

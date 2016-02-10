@@ -15,13 +15,24 @@
         <h2>Hochschulliste</h2>
     </md-toolbar>
     <md-content layout-padding>
-        <form name="universityFilterForm">
-            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
-            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
-            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
+        <h3>Filter</h3>
+        <form name="universityFilterForm" layout="row">
+            <div flex layout="column" layout-align="center">
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ADM">ADM</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.CON">CON</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.INF">INF</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ITM">ITM</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.SWE">SWE</md-checkbox></span>
+            </div>
+            <div flex layout="column" layout-align="center">
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirsch.-Inf.</md-checkbox></span>
+            </div>
         </form>
     </md-content>
     <md-content layout-padding>
+        <h3>Hochschulen</h3>
         <md-list>
             <md-list-item ng-repeat="university in universities">
                 <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>

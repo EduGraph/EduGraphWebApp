@@ -12,7 +12,7 @@ studysearchApp.controller('AppCtrl', function($scope){
             'BIS': false, // Business Information Systems
             'CSC': false // Computer Science
         },
-        jobProfile: {
+        'jobs': {
             'ADM': false,
             'CON': false,
             'INF': false,
@@ -190,6 +190,14 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         $scope.pillarChartData = [
             other, bamPillar, bisPillar, cscPillar
         ];
+        //    $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
+        $scope.jobChartData = [[
+            parseFloat($scope.chosenUniversity.degreeProgramJobADM),
+            parseFloat($scope.chosenUniversity.degreeProgramJobCON),
+            parseFloat($scope.chosenUniversity.degreeProgramJobINF),
+            parseFloat($scope.chosenUniversity.degreeProgramJobITM),
+            parseFloat($scope.chosenUniversity.degreeProgramJobSWE)
+        ]];
         $scope.universityInfoSidenavLock = true;
     };
 

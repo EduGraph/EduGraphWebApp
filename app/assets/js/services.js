@@ -45,6 +45,7 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 '	?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude ' +
                 '   ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy ' +
                 '   ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE ' +
+                '   ?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE ' +
                 '{ ' +
                 '?universityURI a schema:CollegeOrUniversity; ' +
                 'rdfs:label ?universityLabel_lang; ' +
@@ -71,6 +72,16 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
+                '	BIND((?degreeProgramBAMPillar) AS ?degreeProgramJobADM) '+
+                '  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON) '+
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF) '+
+                '	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM) '+
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE) '+
+                (options.filter.jobs.ADM ? 'FILTER (?degreeProgramJobADM >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.CON ? 'FILTER (?degreeProgramJobCON >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.INF ? 'FILTER (?degreeProgramJobINF >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.ITM ? 'FILTER (?degreeProgramJobITM >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.SWE ? 'FILTER (?degreeProgramJobSWE >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
                 'FILTER (langMatches(lang(?universityLabel_lang),"de")) ' +
                 'BIND (str(?universityLabel_lang) AS ?universityLabel) ' +
                 ' '+

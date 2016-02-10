@@ -14,7 +14,9 @@ studysearchApp.constant("studysearchConfig", {
     // SPARQL Queries cachen um Ladezeiten zu verringern
     "cacheSPARQLQueries": false,
     // Grenzwert damit Säule als Schwerpunkt gilt
-    "pillarEmphasisValue": 0.3
+    "pillarEmphasisValue": 0.3,
+    // Grenzwert damit Job Profil als Schwerpunkt gilt
+    "jobEmphasisValue": 0.3
 });
 
 /*
