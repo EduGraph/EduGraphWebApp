@@ -5,6 +5,9 @@
  */
 var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'chart.js', 'ngRoute', 'leaflet-directive', 'angular-loading-bar', 'ngAnimate']);
 
+/*
+ * Konstante für zentrale Konfiguration
+ */
 studysearchApp.constant("studysearchConfig", {
     // SPARQL Endpoint URL
     "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphEnrichment/query",
@@ -37,6 +40,9 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
         .when('/map', {
             templateUrl: 'templates/map.tpl.html',
             controller: 'MapCtrl'
+        })
+        .when('/imprint', {
+            templateUrl: 'templates/imprint.tpl.html'
         })
         .otherwise({
             templateUrl: 'templates/404.tpl.html',

@@ -22,6 +22,8 @@
 
     </head>
     <body ng-controller="AppCtrl" layout="column">
+
+        <!-- Toolbar im oberen Teil der Seite -->
         <md-toolbar layout="row" layout-padding layout-align="center center" class="header toolbar-header">
                 <div class="logo" layout="row" layout-align="center center">
                     <img src="assets/images/edugraph-logo.png">
@@ -32,39 +34,10 @@
                 <md-button href="./map"><md-icon md-font-library="material-icons" aria-label="Karte">map</md-icon> Studiengänge</md-button>
                 <md-button href="./imprint"><md-icon md-font-library="material-icons" aria-label="Impressum">face</md-icon> Impressum</md-button>
         </md-toolbar>
-        <!--<md-sidenav class="studysearch-main-navigation" flex md-is-locked-open="true">
-            <md-toolbar layout-padding>
-                <div>
-                    <img src="assets/images/edugraph-logo.png" style="height: 120px">
-                </div>
-            </md-toolbar>
-            <md-content>
-                <md-button href="./">
-                    <md-icon md-font-library="material-icons" aria-label="Startseite">home</md-icon>
-                    Startseite
-                </md-button>
-                <md-button href="./map">
-                    <md-icon md-font-library="material-icons" aria-label="Karte">map</md-icon>
-                    Karte
-                </md-button>
-                <md-button href="./imprint">
-                    <md-icon md-font-library="material-icons" aria-label="Impressum">face</md-icon>
-                    Impressum
-                </md-button>
-            </md-content>
-        </md-sidenav>-->
+
+        <!-- Hauptelement der Applikation und Einbindung der Views -->
         <main flex layout="row" ng-view>
         </main>
-
-
-        <!--<footer class="withlove">
-            Impressum | Supported by AKWI |
-
-            Made with <md-icon md-font-library="material-icons" class="love">favorite</md-icon> at <a href="">UAS Brandenburg</a>
-
-
-
-        </footer>-->
 
         <!-- AngularJS -->
 
@@ -87,5 +60,6 @@
         <script type="text/javascript" src="assets/js/services.js"></script>
         <script type="text/javascript" src="assets/js/controllers.js"></script>
         <script type="text/javascript" src="assets/js/directives.js"></script>
+
     </body>
 </html>
