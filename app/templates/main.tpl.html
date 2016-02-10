@@ -1,0 +1,128 @@
+<div flex layout="column" tabIndex="-1">
+    <md-content>
+        <div class="cover-page" layout-align="center center">
+            <div class="text">
+                <h1>Eine Plattform für Studiengänge der Wirtschaftsinformatik</h1>
+                <h2>Finde einen Studienplatz der zu deiner beruflichen Zukunft passt.</h2>
+            </div>
+        </div>
+
+        <div>
+            <div id="degreeProgramAnchor" flex="70" style="text-align: center; margin:10px auto;" layout="column">
+
+                <md-card class="md-whiteframe-2dp" flex="none">
+                    <h1>Wirtschaftsinformatik</h1>
+                </md-card>
+
+                <div layout="row" flex="grow">
+                    <md-card flex="40" layout="column" class="jobProfiles md-whiteframe-2dp">
+                        <h2 flex="5">Jobprofil</h2>
+                        <md-button ng-click="toggleCheckBox('jobProfile', 'ADM')">
+                            <div flex="auto" class="" layout="row" layout-align="left center">
+                                <div flex="40" class="media">
+                                    <!--<img src="http://www.impactauh.ae/wp-content/uploads/2014/01/server_mait.jpg">-->
+                                    <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                                </div>
+                                <div flex="50">
+                                    <div class="md-grid-text">Administration</div>
+                                </div>
+                                <div flex="10" layout-align="center center">
+                                    <md-checkbox ng-model="$parent.filter.jobProfile.ADM" class="round"></md-checkbox>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-button ng-click="toggleCheckBox('jobProfile', 'CON')">
+                            <div flex="auto" class="" layout="row" layout-align="left center">
+                                <div flex="40" class="media">
+                                    <!--<img src="http://www.cpr-pa.com/wp-content/uploads/2013/01/photodune-5828554-consulting-l.jpg">-->
+                                    <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                                </div>
+                                <div flex="50">
+                                    <div class="md-grid-text">Beratung</div>
+                                </div>
+                                <div flex="10" layout-align="center center">
+                                    <md-checkbox ng-model="$parent.filter.jobProfile.CON" class="round"></md-checkbox>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-button ng-click="toggleCheckBox('jobProfile', 'INF')">
+                            <div flex="auto" class="" layout="row" layout-align="left center">
+                                <div flex="40" class="media">
+                                    <!--<img src="assets/images/jobprofiles/informatik.jpg">-->
+                                    <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                                </div>
+                                <div flex="50">
+                                    <div class="md-grid-text">Informatik</div>
+                                </div>
+                                <div flex="10" layout-align="center center">
+                                    <md-checkbox ng-model="$parent.filter.jobProfile.INF" class="round"></md-checkbox>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-button ng-click="toggleCheckBox('jobProfile', 'ITM')">
+                            <div flex="auto" class="" layout="row" layout-align="left center">
+                                <div flex="40" class="media">
+                                    <img src="assets/images/jobprofiles/it-management.jpeg">
+                                </div>
+                                <div flex="50">
+                                    <div class="md-grid-text">IT-Management</div>
+                                </div>
+                                <div flex="10" layout-align="center center">
+                                    <md-checkbox ng-model="$parent.filter.jobProfile.ITM" class="round"></md-checkbox>
+                                </div>
+                            </div>
+                        </md-button>
+                        <md-button ng-click="toggleCheckBox('jobProfile', 'SWE')">
+                            <div flex="auto" class="" layout="row" layout-align="center center">
+                                <div flex="40" class="media">
+                                    <img src="assets/images/jobprofiles/sw-entwicklung2.jpeg">
+                                </div>
+                                <div flex="50">
+                                    <div class="md-grid-text">SW-Entwicklung</div>
+                                </div>
+                                <div flex="10" layout-align="center center">
+                                    <md-checkbox ng-model="$parent.filter.jobProfile.SWE" class="round"></md-checkbox>
+                                </div>
+                            </div>
+                        </md-button>
+                    </md-card>
+
+                    <div flex="20" layout="column" layout-align="center center">
+                        <h3>ODER</h3>
+                    </div>
+
+                    <md-card flex="40" layout="column" class="pillars md-whiteframe-2dp">
+                        <h2>Schwerpunkt</h2>
+                        <div flex layout="column">
+                            <md-button class="md-grid-item-content pillar-bam" flex="auto"
+                                       ng-click="toggleCheckBox('pillars', 'BAM')">
+                                <md-checkbox ng-model="$parent.filter.pillars.BAM" class="round"></md-checkbox>
+                                <md-icon md-font-library="material-icons" aria-label="Informatik">insert_chart</md-icon>
+                                <div class="md-grid-text">Betriebswirtschaftslehre</div>
+                            </md-button>
+
+                            <md-button class="md-grid-item-content pillar-bis" flex="auto"
+                                       ng-click="toggleCheckBox('pillars', 'BIS')">
+                                <md-checkbox ng-model="$parent.filter.pillars.BIS" class="round"></md-checkbox>
+                                <md-icon md-font-library="material-icons" aria-label="Informatik">merge_type</md-icon>
+                                <div class="md-grid-text">Wirtschaftsinformatik</div>
+                            </md-button>
+
+                            <md-button class="md-grid-item-content pillar-csc" flex="auto"
+                                       ng-click="toggleCheckBox('pillars', 'CSC')">
+                                <md-checkbox ng-model="$parent.filter.pillars.CSC" class="round"></md-checkbox>
+                                <md-icon md-font-library="material-icons" aria-label="Informatik">code</md-icon>
+                                <div class="md-grid-text">Informatik</div>
+                            </md-button>
+                        </div>
+                    </md-card>
+                </div>
+
+                <div flex="none" style="height:100px;">
+                    <md-button href="./map" class="md-raised md-primary">Finde deinen Studiengang</md-button>
+                </div>
+
+            </div>
+        </div>
+    </md-content>
+</div>

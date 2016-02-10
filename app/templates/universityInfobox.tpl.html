@@ -1,0 +1,52 @@
+<md-sidenav flex="grow" md-component-id="university-info-sidenav" md-is-locked-open="universityInfoSidenavLock" class="university-sidenav">
+    <md-toolbar layout-padding class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h3>{{chosenUniversity.universityLabel}}</h3>
+            <span flex></span>
+            <md-button class="md-icon-button md-accent" ng-click="toggleUniversityInfoSidenav()">
+                <md-icon md-font-library="material-icons" aria-label="Close">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div layout="row" layout-padding layout-align="center center">
+        <h3>{{chosenUniversity.degreeProgramLabel}}</h3>
+        <span flex></span>
+        <a ng-href="{{chosenUniversity.degreeProgramHomepage}}" target="_blank"><i class="material-icons">share</i></a>
+    </div>
+
+    <md-list class="keyvalue-list" layout="row">
+        <md-list-item >
+            <div class="md-grid-item-content" layout="column">
+                <md-icon md-font-library="material-icons" aria-label="Semester">timeline</md-icon>
+                <div class="md-grid-text">{{chosenUniversity.degreeProgramPeriodOfStudy}}</div>
+            </div>
+        </md-list-item>
+        <md-list-item >
+            <div class="md-grid-item-content" layout="column">
+                <md-icon md-font-library="material-icons" aria-label="ECTS">schedule</md-icon>
+                <div class="md-grid-text">{{chosenUniversity.degreeProgramCreditPoints}} ECTS</div>
+            </div>
+        </md-list-item>
+        <md-list-item >
+            <div class="md-grid-item-content" layout="column">
+                <md-icon md-font-library="material-icons" aria-label="Ranking">grade</md-icon>
+                <div class="md-grid-text">{{chosenUniversity.degreeProgramRankingCHE}}</div>
+            </div>
+        </md-list-item>
+    </md-list>
+
+    <md-content layout-padding>
+        <h3>Schwerpunkte</h3>
+        <canvas id="pie" class="chart chart-doughnut"
+                chart-data="pillarChartData" chart-labels="pillarChartLabels" chart-colours="pillarChartColor">
+        </canvas>
+    </md-content>
+
+    <md-content layout-padding>
+        <h3>Jobprofile</h3>
+        <canvas id="radar" class="chart chart-radar"
+                chart-data="jobChartData" chart-labels="jobChartLabels">
+        </canvas>
+    </md-content>
+</md-sidenav>

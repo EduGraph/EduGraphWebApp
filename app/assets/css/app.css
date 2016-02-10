@@ -1,0 +1,202 @@
+/*
+ * app.css
+ */
+
+.angular-leaflet-map {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+md-toolbar.header{
+    /*background-color:white;*/
+    color:white;
+}
+
+/*
+ * Stylsheets der Hauptnavigation
+ */
+.studysearch-main-navigation,
+.studysearch-main-navigation.md-locked-open,
+.studysearch-main-navigation.md-closed.md-locked-open-add-active {
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: 150px !important;
+}
+
+.toolbar-header .logo{
+    font-family: "Montserrat", "Arial Narrow Bold", sans-serif;
+
+}
+
+.toolbar-header .logo img{
+    vertical-align: middle;
+    max-height: 40px
+}
+
+.cover-page {
+
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    display: flex;
+    /*background-image: url(http://www.wu.ac.at/fileadmin/wu/h/press/Pressebilder/campus_wu_c_johannes_zinner.jpg);*/
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);
+    background-size: cover;
+}
+
+.cover-page .text{
+    padding: 20px;
+    background: rgba(0,0,0,0.6)
+}
+
+
+.pillars, .jobProfiles{
+    padding: 40px;
+}
+
+.pillars md-checkbox{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.jobProfiles md-checkbox{
+    margin: auto;
+}
+
+.jobProfiles md-checkbox .md-icon,
+.pillars md-checkbox .md-icon {
+    border-radius: 50%;
+}
+
+.jobProfiles md-checkbox.md-checked .md-icon,
+.pillars md-checkbox.md-checked .md-icon{
+    background-color: #009688;
+    color: #ffffff;
+}
+
+.jobProfiles md-button,
+.pillars md-button {
+    position: relative;
+    /*opacity: 0.4;*/
+}
+
+.jobProfiles md-button,
+.jobProfiles md-card {
+    background-color: teal;
+    color: #ffffff;
+}
+
+.jobProfiles md-card:hover{
+    opacity: 1;
+}
+
+.jobProfiles button {
+    padding: 0;
+    background: #546E7A;
+    color: #ffffff;
+}
+
+.jobProfiles button:not([disabled]):hover {
+    padding: 0;
+    background: teal;
+    color: #000000;
+}
+
+.pillars md-button:hover {
+    opacity: 1;
+}
+
+/*
+ * Stylesheets der Universitätsinfo sidenav
+ */
+.university-sidenav md-toolbar{
+    color: white;
+}
+
+.keyvalue-list md-icon{
+    font-size: 32px;
+    padding-bottom: 10px;
+}
+
+.keyvalue-list .md-grid-text {
+    font-size: 14px;
+}
+
+/*
+ * Stylesheets für die Universitätsliste
+ */
+#universityListToggler{
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 2;
+}
+
+/*
+ * Stylesheets der Startseite
+ */
+.pillar-bam {
+    background-color: #FDB45C;
+}
+
+.pillar-csc {
+    background-color: #97BBCD;
+}
+
+.pillar-bis{
+    background-color: #F7464A;
+}
+
+
+
+/*
+ * Stylesheets für den Footer
+ */
+footer{
+    position: fixed;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    color: #000000;
+    background: white;
+}
+
+.withlove {
+    color: #606060;
+    font-size: 12px;
+    display: block;
+    /*
+    position: absolute;
+    bottom: 10px;
+
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 45%;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(-50%);
+    */
+    text-align: center;
+}
+
+.withlove a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.withlove .love {
+    color: #E90606;
+    margin: 0 3px;
+    font-size: 12px;
+    animation: pound 0.35s infinite alternate;
+    -webkit-animation: pound 0.35s infinite alternate;
+}

@@ -1,0 +1,33 @@
+<university-infobox></university-infobox>
+
+<leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds">
+    <div id="universityListToggler">
+        <md-button class="md-icon-button md-accent" ng-click="toggleUniversityListSidenav()">
+            <md-icon ng-if="universityListSidenavLock" md-font-library="material-icons" aria-label="Einklappen">chevron_right</md-icon>
+            <md-icon ng-if="!universityListSidenavLock" md-font-library="material-icons" aria-label="Ausklappen">chevron_left</md-icon>
+        </md-button>
+    </div>
+</leaflet>
+
+
+<md-sidenav md-is-locked-open="universityListSidenavLock" flex layout="column">
+    <md-toolbar layout-padding class="md-hue-1">
+        <h2>Hochschulliste</h2>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form name="universityFilterForm">
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
+        </form>
+    </md-content>
+    <md-content layout-padding>
+        <md-list>
+            <md-list-item ng-repeat="university in universities">
+                <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+            <md-list-item ng-show="!universities.length">Keine Einträge</md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
