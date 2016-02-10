@@ -6,9 +6,11 @@
 var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'chart.js', 'ngRoute', 'leaflet-directive', 'angular-loading-bar', 'ngAnimate']);
 
 studysearchApp.constant("studysearchConfig", {
-    //"sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/biseAPITestData/query"
+    // SPARQL Endpoint URL
     "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphEnrichment/query",
+    // SPARQL Queries cachen um Ladezeiten zu verringern
     "cacheSPARQLQueries": false,
+    // Grenzwert damit Säule als Schwerpunkt gilt
     "pillarEmphasisValue": 0.3
 });
 
@@ -29,16 +31,7 @@ studysearchApp.config(function ($routeProvider, $locationProvider) {
     // Route Provider
     $routeProvider
         .when('/', {
-            templateUrl: 'templates/main.tpl.html',
-            controller: 'MapCtrl'
-        })
-        .when('/university/:universityUri', {
-            templateUrl: 'templates/university.tpl.html',
-            controller: 'UniversityCtrl'
-        })
-        .when('/search/:query', {
-            templateUrl: 'templates/searchResults.tpl.html',
-            controller: 'SearchCtrl'
+            templateUrl: 'templates/main.tpl.html'
         })
         .when('/map', {
             templateUrl: 'templates/map.tpl.html',

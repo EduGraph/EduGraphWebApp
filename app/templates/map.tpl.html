@@ -1,98 +1,33 @@
-<md-sidenav md-is-locked-open="true" flex="noshrink" layout="column" class="university-sidebox" >
+<university-infobox></university-infobox>
 
-    <md-fab-speed-dial md-open="MapCtrl.isOpen" md-direction="down" ng-class="md-fling" class="md-scale md-fab-top-right">
-        <md-fab-trigger>
-            <md-button aria-label="menu" class="md-fab md-warn md-mini">
-                <md-icon md-font-library="material-icons">more_vert</md-icon>
-            </md-button>
-        </md-fab-trigger>
-        <md-fab-actions>
-            <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
-                <md-icon md-font-library="material-icons">account_balance</md-icon>
-            </md-button>
-            <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
-                <md-icon md-font-library="material-icons">location_city</md-icon>
-            </md-button>
-        </md-fab-actions>
-    </md-fab-speed-dial>
-
-    <div class="university-header">
-        <img src="http://farm3.static.flickr.com/2441/3975475200_ef9c753fa8.jpg" />
-        <h3>Technische Hochschule Brandenburg</h3>
+<leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds">
+    <div id="universityListToggler">
+        <md-button class="md-icon-button md-accent" ng-click="toggleUniversityListSidenav()">
+            <md-icon ng-if="universityListSidenavLock" md-font-library="material-icons" aria-label="Einklappen">chevron_right</md-icon>
+            <md-icon ng-if="!universityListSidenavLock" md-font-library="material-icons" aria-label="Ausklappen">chevron_left</md-icon>
+        </md-button>
     </div>
+</leaflet>
 
-    <md-content class="degreeProgram">
 
-        <h3>
-            Bachelor WI - Wirtschaftsinformatik
-            <a href="http://fbwcms.fh-brandenburg.de/de/5566" target="_blank"><i class="material-icons">share</i></a>
-        </h3>
-
-        <div class="degreeProgram-infobox" style="text-align:center;">
-                <md-list flex layout="row" layout-align="center center" >
-
-                    <md-list-item >
-                        <div class="md-grid-item-content">
-                            <md-icon md-font-library="material-icons" aria-label="Semester">schedule</md-icon>
-                            <div class="md-grid-text">6 Semester</div>
-                        </div>
-                    </md-list-item>
-
-                    <md-list-item >
-                        <div class="md-grid-item-content">
-                            <md-icon md-font-library="material-icons" aria-label="180 ECTS">info_outline</md-icon>
-                            <div class="md-grid-text">180 ECTS</div>
-                        </div>
-                    </md-list-item>
-
-                    <md-list-item >
-                        <div class="md-grid-item-content">
-                            <md-icon md-font-library="material-icons" aria-label="Ranking">grade</md-icon>
-                            <div class="md-grid-text">Platz 8 CHE</div>
-                        </div>
-                    </md-list-item>
-
-                </md-list>
-        </div>
-
-        <div layout="column">
-            <div flex="20">
-                <h3>Schwerpunkte</h3>
-
-                <canvas id="pie" class="chart chart-doughnut"
-                        chart-data="data" chart-labels="labels" chart-colours="colours">
-                </canvas>
-            </div>
-            <div flex="20">
-                <h3>Jobprofile</h3>
-                <canvas id="radar" class="chart chart-radar"
-                        chart-data="radar_data" chart-labels="radar_labels">
-                </canvas>
-            </div>
-        </div>
-
-    </md-content>
-</md-sidenav>
-
-<leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds"></leaflet>
-
-<md-sidenav md-is-locked-open="true" flex layout="column">
-    <md-toolbar flex="20">
+<md-sidenav md-is-locked-open="universityListSidenavLock" flex layout="column">
+    <md-toolbar layout-padding class="md-hue-1">
         <h2>Hochschulliste</h2>
     </md-toolbar>
-    <md-content flex="20">
-    <form name="universityFilterForm">
-        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
-        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
-        <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
-    </form>
+    <md-content layout-padding>
+        <form name="universityFilterForm">
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+            <span layout="row"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
+        </form>
     </md-content>
-    <md-content flex="60">
+    <md-content layout-padding>
         <md-list>
             <md-list-item ng-repeat="university in universities">
-                {{university.universityLabel}}
+                <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>
+                <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
-            <md-divider ng-if="!$last"></md-divider>
+            <md-list-item ng-show="!universities.length">Keine Einträge</md-list-item>
         </md-list>
     </md-content>
 </md-sidenav>

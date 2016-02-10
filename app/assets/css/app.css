@@ -10,74 +10,47 @@ main {
     height: 100%;
 }
 
+/*
+ * Stylsheets der Hauptnavigation
+ */
 .studysearch-main-navigation,
 .studysearch-main-navigation.md-locked-open,
 .studysearch-main-navigation.md-closed.md-locked-open-add-active {
-    min-width: 0px !important;
+    min-width: 0 !important;
     width: auto !important;
     max-width: 150px !important;
 }
 
-.university-header {
-    overflow:hidden;
-    color:white;
+/*
+ * Stylesheets der Universitätsinfo sidenav
+ */
+.university-sidenav md-toolbar{
+    color: white;
 }
 
-.university-header img{
-    height:270px;
-}
-
-.university-header h3 {
-    position: absolute;
-    top: 200px;
-
-    padding-left:10px;
-}
-
-
-.degreeProgram-infobox md-icon{
+.keyvalue-list md-icon{
     font-size: 32px;
     padding-bottom:10px;
-
 }
 
-.degreeProgram-infobox .md-grid-text {
+.keyvalue-list .md-grid-text {
     font-size: 14px;
 }
 
-#pie{
-
-
-    /*transform: rotate(151.2deg);*/
+/*
+ * Stylesheets für die Universitätsliste
+ */
+#universityListToggler{
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 2;
 }
 
-.JobProfiles{
-
-}
-
-
-.JobProfileADM{
-
-}
-.JobProfileCON{
-
-}
-.JobProfileINF{
-
-}
-.JobProfileITM{
-
-}
-
-.JobProfileSWE{
-
-}
-
-
-.pillars{
-
-}
-
+/*
+ * Stylesheets der Startseite
+ */
 .pillar-bam {
     background-color: #FDB45C;
 }
@@ -90,56 +63,34 @@ main {
     background-color: #F7464A;
 }
 
-
-
-
+/*
+ * Stylesheets für den Footer
+ */
 footer{
-    position:fixed;
-    bottom:20px;
-    left:0px;
-    width:100%;
-    color:#000;
-    background:white;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    color: #000;
+    background: white;
 }
-
 
 .withlove {
     color: #666;
     font-size: 12px;
     display: block;
-    /*
-    position: absolute;
-    bottom: 10px;
-
-    position: absolute;
-    width: 90%;
-    left: 50%;
-    top: 45%;
-    bottom: auto;
-    right: auto;
-    transform: translateX(-50%) translateY(-50%);
-    */
     text-align: center;
 }
+
 .withlove a {
     color: #000000;
     text-decoration: none;
 }
+
 .withlove .love {
     color: #E90606;
     margin: 0 3px;
     font-size: 12px;
     animation: pound 0.35s infinite alternate;
     -webkit-animation: pound 0.35s infinite alternate;
-}
-
-@-webkit-keyframes pound {
-    to {
-        transform: scale(1.1);
-    }
-}
-@keyframes pound {
-    to {
-        transform: scale(1.1);
-    }
 }

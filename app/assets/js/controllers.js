@@ -1,10 +1,14 @@
 /*
+ * controllers.js
+ */
+
+/*
  * Top-Level Controller für die Steuerung anwendungsübergreifender Programmteile
  */
 studysearchApp.controller('AppCtrl', function($scope){
     $scope.filter = {
         'pillars': {
-            'BAM': true, // Business Administration Management
+            'BAM': false, // Business Administration Management
             'BIS': false, // Business Information Systems
             'CSC': false // Computer Science
         },
@@ -18,114 +22,24 @@ studysearchApp.controller('AppCtrl', function($scope){
     };
 });
 
-studysearchApp.controller('CourseListCtrl', function($scope, SPARQLQueryService) {
-    $scope.courses = [
-        {
-            courseName: 'Wirtschaftsinformatik',
-            courseDescription: 'Die Wirtschaftsinformatik ist eine Wissenschaft, die sich mit Entwicklung und Anwendung von Informations- und Kommunikationssystemen in Wirtschaftsunternehmen befasst.'
-        }
-    ];
-
-    $scope.queryCourses = function(){
-        $scope.courses= SPARQLQueryService.getCourses().then(
-            function successCallback(response) {
-                console.log(response);
-            },
-            function errorCallback(response) {
-                console.log(response);
-            }
-        );
-    }
-});
-
-studysearchApp.controller('UniversityCtrl', function($scope, $routeParams, SPARQLQueryService) {
-    $scope.university = {};
-
-    // Aufruf des SPARQL Endpoint
-    $scope.queryUniversity = function(){
-        SPARQLQueryService.getUniversityByUri($routeParams.universityUri).then(
-            function successCallback(response) {
-                var responseData = response.data.results.bindings[0];
-                for(var objectProperty in responseData){
-                    $scope.university[objectProperty] = responseData[objectProperty].value;
-                    $scope.addMarker('marker', parseFloat($scope.university.universityLatitude), parseFloat($scope.university.universityLongitude), $scope.university.universityLabel);
-                    $scope.centerMap(parseFloat($scope.university.universityLatitude), parseFloat($scope.university.universityLongitude));
-                }
-            },
-            function errorCallback(response) {
-                console.log(response);
-            }
-        );
-    };
-
-    /*
-     * Fügt einen Marker mit dem angegebenen Längen- und Breitengrad, sowie einer Nachricht auf der Leaflet Karte
-     * hinzu.
-     */
-    $scope.addMarker = function(name, latitude, longitude, message){
-        angular.extend($scope, {
-            markers: {
-                marker: {
-                    lat: latitude,
-                    lng: longitude,
-                    message: message,
-                    draggable: false
-                }
-            }
-        });
-    };
-
-    /*
-     * Zentriert die Leaflet Karte auf den angegebenen Längen- und Breitengrad
-     *
-     * @param {number} latitude - Breitengrad
-     * @param {number} longitude - Längengrad
-     * @param {number} zoom - Zoom
-     */
-    $scope.centerMap = function(latitude, longitude, zoom){
-        if(typeof zoom === 'undefined') { zoom = 12; }
-        angular.extend($scope, {
-            center: {
-                lat: latitude,
-                lng: longitude,
-                zoom: 12
-            }
-        });
-    };
-
-    /*
-     * Initiieren der Leaflet Karte.
-     */
-    angular.extend($scope, {
-        center: {
-            lat: 51.097,
-            lng: 11.316,
-            zoom: 6
-        },
-        markers: {},
-        defaults: {
-            scrollWheelZoom: true
-        }
-    });
-
-    $scope.queryUniversity();
-});
-
+/*
+ * Karten Controller
+ *
+ * Controller für die Kartenansicht.
+ */
 studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEvents, leafletData, $mdSidenav, SPARQLQueryService, $timeout){
+    // Deklaration des Universitätslisten Arrays
     $scope.universities = [];
 
-    // Info Card
-    $scope.labels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
-    $scope.data = [0.16, 0.2, 0.41, 0.23];
-    $scope.colours = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
+    // Deklaration und Initialisierung der Universitätsinfo Diagramme
+    $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
+    $scope.pillarChartData = [0, 0, 0, 0];
+    $scope.pillarChartColor = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
 
-    $scope.radar_labels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
-    $scope.radar_data = [[0.23, 0.2, 0.23, 0.41, 0.23]];
+    $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
+    $scope.jobChartData = [[0.23, 0.2, 0.23, 0.41, 0.23]];
 
-    $scope.isOpen = false;
-
-    // Info Card End
-
+    // Controller Funktion für die SPARQL Abfrage
     $scope.queryUniversity = function(){
         var options = {};
         options.filter = $scope.$parent.filter;
@@ -159,7 +73,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
      * hinzu.
      */
     $scope.addMarker = function(name, latitude, longitude, message, uri){
-        console.log(name, latitude, longitude, message);
+        //console.log(name, latitude, longitude, message);
         $scope.markers[name] = {
             lat: latitude,
             lng: longitude,
@@ -174,7 +88,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     /*
      * Initiieren der Leaflet Karte.
      */
-    angular.extend($scope, {
+    var leafletInitiateOptions = {
         center: {
             lat: 51.097,
             lng: 11.316,
@@ -191,25 +105,25 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             baselayers: {
                 hotosm: {
                     name: 'HOTOSM',
-                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                        url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                        type: 'xyz'
                 },
                 toner: {
                     name: 'Stamen Toner',
-                    url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                        url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+                        type: 'xyz'
                 },
                 watercolor: {
                     name: 'Watercolor',
-                    url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                        url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
+                        type: 'xyz'
                 }
             },
             overlays: {
                 universityLayer: {
                     name: 'CollegeOrUniversity',
-                    type: 'markercluster',
-                    visible: true
+                        type: 'markercluster',
+                        visible: true
                 }
             }
         },
@@ -227,35 +141,88 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             minZoom: 5,
             scrollWheelZoom: true
         }
-    });
+    };
+    angular.extend($scope, leafletInitiateOptions);
 
+    // ?
     $scope.eventDetected = "No events yet...";
 
+    /*
+     * Setzen von Eventbehandlung auf die Leaflet Marker
+     */
     var markerEvents = leafletMarkerEvents.getAvailableEvents();
     for (var k in markerEvents){
         var eventName = 'leafletDirectiveMarker.universityMap.' + markerEvents[k];
         $scope.$on(eventName, function(event, args){
-            console.log(event,args);
+            //console.log(event,args);
             if(event.name == 'leafletDirectiveMarker.universityMap.click'){
-                //$mdSidenav('info-sidenav').toggle();
-                var newLocation = '/university/'+encodeURIComponent(encodeURIComponent($scope.markers[args.modelName].uri));
-                console.log(newLocation);
-                $location.url(newLocation);
+                var chosenUniversityURI = $scope.markers[args.modelName].uri;
+                $scope.openUniversityByURI(chosenUniversityURI);
             }
         });
     }
 
-    $scope.queryUniversity();
-    $timeout(function(){
+    /*
+     * Öffnen der Universitäts sidenav mit dem Inhalt basierend auf der angegebenen URI
+     */
+    $scope.openUniversityByURI = function(universityURI){
+        for(var i = 0; i < $scope.universities.length; i++){
+            if($scope.universities[i].universityURI == universityURI){
+                $scope.chosenUniversity = $scope.universities[i];
+                //console.log($scope.chosenUniversity);
+            }
+        }
+        var bamPillar = parseFloat($scope.chosenUniversity.degreeProgramBAMPillar);
+        var bisPillar = parseFloat($scope.chosenUniversity.degreeProgramCSCPillar);
+        var cscPillar = parseFloat($scope.chosenUniversity.degreeProgramBISPillar);
+        var other = (1.0 - (bamPillar+cscPillar+bisPillar)).toFixed(2);
+        $scope.pillarChartData = [
+            other, bamPillar, bisPillar, cscPillar
+        ];
+        $scope.universityInfoSidenavLock = true;
+    };
+
+    /*
+     * Deklaration und Initialisierung der Universitätsinfo sidenav und einer Funktion
+     * zum öffnen und schließen.
+     */
+    $scope.universityInfoSidenavLock = false;
+    $scope.toggleUniversityInfoSidenav = function(){
+        $scope.universityInfoSidenavLock = $scope.universityInfoSidenavLock ? false : true;
+    };
+
+    /*
+     * Deklaration und Initialisierung der Universitätsliste sidenav und einer Funktion
+     * zum öffnen und schließen.
+     */
+    $scope.universityListSidenavLock = true;
+    $scope.toggleUniversityListSidenav = function(){
+        $scope.universityListSidenavLock = $scope.universityListSidenavLock ? false : true;
+        $scope.invalidateMap();
+    };
+
+    $scope.invalidateMap = function(){
         leafletData.getMap().then(function(map){
             map.invalidateSize();
-            console.log("Size invalidated by timeout.");
+            //console.log("Size invalidated by timeout.");
         });
-    });
-    console.log($scope);
+    };
 
+    /*
+     * Timeout Funktion für das invalidieren der Karte. Behebt einen Fehler, durch den Teile der Karte ausgegraut waren
+     * und keine Kacheln geladen wurden.
+     */
+    $timeout(function(){
+        $scope.invalidateMap();
+    });
+
+    // Nach dem vollständigen Laden des Controllers, Ausführen der ersten Abfrage von Universitäten.
+    $scope.queryUniversity();
 });
 
+/*
+ * Controller für die Ausgabe von 404 Seiten.
+ */
 studysearchApp.controller('Error404Ctrl', function($scope, $location){
     $scope.errorURL = $location.absUrl();
 });

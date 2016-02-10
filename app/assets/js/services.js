@@ -65,9 +65,9 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 '?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar; '+
                 '	bise:pillarBIS ?degreeProgramBISPillar; '+
                 '	bise:pillarCSC ?degreeProgramCSCPillar. '+
-                (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar > '+studysearchConfig.pillarEmphasisValue+') ' : '') +
-                (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar > '+studysearchConfig.pillarEmphasisValue+') ' : '') +
-                (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar > '+studysearchConfig.pillarEmphasisValue+') ' : '') +
+                (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
+                (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
+                (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 'FILTER (langMatches(lang(?universityLabel_lang),"de")) ' +
                 'BIND (str(?universityLabel_lang) AS ?universityLabel) ' +
                 ' '+
