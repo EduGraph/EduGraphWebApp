@@ -72,7 +72,7 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
-                '	BIND((?degreeProgramBAMPillar) AS ?degreeProgramJobADM) '+
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM) '+
                 '  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON) '+
                 '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF) '+
                 '	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM) '+

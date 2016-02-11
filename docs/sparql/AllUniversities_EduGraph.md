@@ -53,7 +53,7 @@ WHERE
     #FILTER (?degreeProgramBAMPillar >= 0.3)
     #FILTER (?degreeProgramBISPillar >= 0.3)
     #FILTER (?degreeProgramCSCPillar >= 0.3)
-	BIND((?degreeProgramBAMPillar) AS ?degreeProgramJobADM)
+	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM)
   	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON)
 	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF)
 	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM)
