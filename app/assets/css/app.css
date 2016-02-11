@@ -161,6 +161,25 @@ md-toolbar {
     min-height: 280px;
 }
 
+.university-list-sidenav .job-filters md-checkbox .md-container,
+.university-list-sidenav .job-filters md-checkbox.md-checked .md-icon{
+    background-color: #008000;
+    color: #ffffff;
+}
+
+.university-list-sidenav .pillar-filters .pillar-bam md-checkbox .md-container,
+.university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon{
+    background-color: #FDB45C;
+}
+.university-list-sidenav .pillar-filters .pillar-bis md-checkbox .md-container,
+.university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon{
+    background-color: #F7464A;
+}
+.university-list-sidenav .pillar-filters .pillar-csc md-checkbox .md-container,
+.university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon{
+    background-color: #97BBCD;
+}
+
 /*
  * Stylesheets für die Universitätsliste
  */
@@ -175,15 +194,15 @@ md-toolbar {
 /*
  * Stylesheets der Startseite
  */
-.pillar-bam {
+.pillars .pillar-bam {
     background-color: #FDB45C;
 }
 
-.pillar-csc {
+.pillars .pillar-csc {
     background-color: #97BBCD;
 }
 
-.pillar-bis{
+.pillars .pillar-bis{
     background-color: #F7464A;
 }
 

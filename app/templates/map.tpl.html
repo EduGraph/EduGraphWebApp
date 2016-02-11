@@ -2,7 +2,7 @@
 
 <leaflet flex id="universityMap" defaults="defaults" layers="layers" event-broadcast="events"  lf-center="center" markers="markers" maxbounds="maxbounds">
     <div id="universityListToggler">
-        <md-button class="md-icon-button md-accent" ng-click="toggleUniversityListSidenav()">
+        <md-button class="md-icon-button md-accent" ng-click="toggleUniversityListSidenav()" aria-label="Ein-/Ausklappen">
             <md-icon ng-if="universityListSidenavLock" md-font-library="material-icons" aria-label="Einklappen">chevron_right</md-icon>
             <md-icon ng-if="!universityListSidenavLock" md-font-library="material-icons" aria-label="Ausklappen">chevron_left</md-icon>
         </md-button>
@@ -33,7 +33,7 @@
             <md-content class="filter-options" layout-padding>
                 <h3>Ihre Auswahl</h3>
                 <form name="universityFilterForm">
-                    <div flex layout="column" layout-align="center">
+                    <div class="job-filters" flex layout="column" layout-align="center">
                         <h4>Job Profile</h4>
                         <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ADM">Administration</md-checkbox></span>
                         <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.CON">Consulting</md-checkbox></span>
@@ -41,11 +41,11 @@
                         <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ITM">IT-Management</md-checkbox></span>
                         <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.SWE">Softwareentwicklung</md-checkbox></span>
                     </div>
-                    <div flex layout="column" layout-align="center">
+                    <div class="pillar-filters" flex layout="column" layout-align="center">
                         <h4>Säulen</h4>
-                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">Betriebswirtschaftslehre</md-checkbox></span>
-                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
-                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
+                        <span class="pillar-bam"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">Betriebswirtschaftslehre</md-checkbox></span>
+                        <span class="pillar-csc"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+                        <span class="pillar-bis"><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
                     </div>
                 </form>
             </md-content>
