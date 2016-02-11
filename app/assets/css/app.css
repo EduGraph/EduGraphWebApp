@@ -11,8 +11,8 @@ main {
     height: calc(100% - 72px);
 }
 
-md-toolbar.header{
-    color:white;
+md-toolbar {
+    color: #ffffff !important;
 }
 
 /*

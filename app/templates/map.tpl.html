@@ -13,34 +13,42 @@
 <md-sidenav class="university-list-sidenav" md-is-locked-open="universityListSidenavLock" flex layout="column">
     <md-toolbar layout-padding class="md-hue-1">
         <div class="md-toolbar-tools">
-            <h2>Hochschulliste</h2>
+            <h2>Liste der Hochschulen</h2>
         </div>
     </md-toolbar>
-    <md-content class="filter-options" layout-padding>
-        <h3>Filter</h3>
-        <form name="universityFilterForm" layout="row">
-            <div flex layout="column" layout-align="center">
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ADM">ADM</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.CON">CON</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.INF">INF</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ITM">ITM</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.SWE">SWE</md-checkbox></span>
-            </div>
-            <div flex layout="column" layout-align="center">
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">BWL</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
-                <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirsch.-Inf.</md-checkbox></span>
-            </div>
-        </form>
-    </md-content>
-    <md-content class="university-list" layout-padding>
-        <h3>Hochschulen</h3>
-        <md-list>
-            <md-list-item ng-repeat="university in universities">
-                <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>
-                <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item ng-show="!universities.length">Keine Einträge</md-list-item>
-        </md-list>
-    </md-content>
+    <md-tabs flex>
+        <md-tab label="Hochschulen ({{universities.length}})">
+            <md-content class="university-list" layout-padding>
+                <h3>Hochschulen</h3>
+                <md-list>
+                    <md-list-item ng-repeat="university in universities">
+                        <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                    <md-list-item ng-show="!universities.length">Keine Einträge</md-list-item>
+                </md-list>
+            </md-content>
+        </md-tab>
+        <md-tab label="Filter">
+            <md-content class="filter-options" layout-padding>
+                <h3>Ihre Auswahl</h3>
+                <form name="universityFilterForm">
+                    <div flex layout="column" layout-align="center">
+                        <h4>Job Profile</h4>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ADM">Administration</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.CON">Consulting</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.INF">Informatik</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.ITM">IT-Management</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.jobs.SWE">Softwareentwicklung</md-checkbox></span>
+                    </div>
+                    <div flex layout="column" layout-align="center">
+                        <h4>Säulen</h4>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BAM">Betriebswirtschaftslehre</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.CSC">Informatik</md-checkbox></span>
+                        <span><md-checkbox ng-change="queryUniversity()" ng-model="$parent.filter.pillars.BIS">Wirtschaftsinformatik</md-checkbox></span>
+                    </div>
+                </form>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 </md-sidenav>
