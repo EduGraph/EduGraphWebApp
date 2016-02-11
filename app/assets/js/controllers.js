@@ -128,19 +128,31 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
                     type: 'xyz',
                     layerOptions: {
                         attribution:
-                            '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>.' +
+                            '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>. ' +
                             'Tiles courtesy of <a target="_blank" href="http://hot.openstreetmap.org/">Humanitarian OpenStreetMap Team</a>'
                     }
                 },
                 toner: {
                     name: 'Stamen Toner',
                     url: 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                    type: 'xyz',
+                    layerOptions: {
+                        attribution:
+                        '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>. ' +
+                        'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                        'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
+                    }
                 },
                 watercolor: {
                     name: 'Watercolor',
                     url: 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                    type: 'xyz',
+                    layerOptions: {
+                        attribution:
+                        '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>. ' +
+                        'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                        'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
+                    }
                 }
             },
             overlays: {
