@@ -27,7 +27,7 @@
                                     <div class="md-grid-text">Administration</div>
                                 </div>
                                 <div flex="10" layout-align="center center">
-                                    <md-checkbox ng-model="$parent.filter.jobs.ADM" class="round"></md-checkbox>
+                                    <md-checkbox ng-model="$parent.filter.jobs.ADM" ng-disabled="true"></md-checkbox>
                                 </div>
                             </div>
                         </md-button>
@@ -41,7 +41,7 @@
                                     <div class="md-grid-text">Beratung</div>
                                 </div>
                                 <div flex="10" layout-align="center center">
-                                    <md-checkbox ng-model="$parent.filter.jobs.CON" class="round"></md-checkbox>
+                                    <md-checkbox ng-model="$parent.filter.jobs.CON" ng-disabled="true"></md-checkbox>
                                 </div>
                             </div>
                         </md-button>
@@ -55,7 +55,7 @@
                                     <div class="md-grid-text">Informatik</div>
                                 </div>
                                 <div flex="10" layout-align="center center">
-                                    <md-checkbox ng-model="$parent.filter.jobs.INF" class="round"></md-checkbox>
+                                    <md-checkbox ng-model="$parent.filter.jobs.INF" ng-disabled="true"></md-checkbox>
                                 </div>
                             </div>
                         </md-button>
@@ -68,7 +68,7 @@
                                     <div class="md-grid-text">IT-Management</div>
                                 </div>
                                 <div flex="10" layout-align="center center">
-                                    <md-checkbox ng-model="$parent.filter.jobs.ITM" class="round"></md-checkbox>
+                                    <md-checkbox ng-model="$parent.filter.jobs.ITM" ng-disabled="true"></md-checkbox>
                                 </div>
                             </div>
                         </md-button>
@@ -81,7 +81,7 @@
                                     <div class="md-grid-text">SW-Entwicklung</div>
                                 </div>
                                 <div flex="10" layout-align="center center">
-                                    <md-checkbox ng-model="$parent.filter.jobs.SWE" class="round"></md-checkbox>
+                                    <md-checkbox ng-model="$parent.filter.jobs.SWE" ng-disabled="true"></md-checkbox>
                                 </div>
                             </div>
                         </md-button>
@@ -96,21 +96,21 @@
                         <div flex layout="column">
                             <md-button class="md-grid-item-content pillar-bam" flex="auto"
                                        ng-click="toggleCheckBox('pillars', 'BAM')">
-                                <md-checkbox ng-model="$parent.filter.pillars.BAM" class="round"></md-checkbox>
+                                <md-checkbox ng-model="$parent.filter.pillars.BAM" ng-disabled="true"></md-checkbox>
                                 <md-icon md-font-library="material-icons" aria-label="Informatik">insert_chart</md-icon>
                                 <div class="md-grid-text">Betriebswirtschaftslehre</div>
                             </md-button>
 
                             <md-button class="md-grid-item-content pillar-bis" flex="auto"
                                        ng-click="toggleCheckBox('pillars', 'BIS')">
-                                <md-checkbox ng-model="$parent.filter.pillars.BIS" class="round"></md-checkbox>
+                                <md-checkbox ng-model="$parent.filter.pillars.BIS" ng-disabled="true"></md-checkbox>
                                 <md-icon md-font-library="material-icons" aria-label="Informatik">merge_type</md-icon>
                                 <div class="md-grid-text">Wirtschaftsinformatik</div>
                             </md-button>
 
                             <md-button class="md-grid-item-content pillar-csc" flex="auto"
                                        ng-click="toggleCheckBox('pillars', 'CSC')">
-                                <md-checkbox ng-model="$parent.filter.pillars.CSC" class="round"></md-checkbox>
+                                <md-checkbox ng-model="$parent.filter.pillars.CSC" ng-disabled="true"></md-checkbox>
                                 <md-icon md-font-library="material-icons" aria-label="Informatik">code</md-icon>
                                 <div class="md-grid-text">Informatik</div>
                             </md-button>

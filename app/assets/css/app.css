@@ -54,6 +54,9 @@ md-toolbar {
     max-height: 40px
 }
 
+
+/* Cover with Image */
+
 .cover-page {
     position: relative;
     width: 100%;
@@ -62,8 +65,7 @@ md-toolbar {
     color: white;
     text-align: center;
     display: flex;
-    /*background-image: url(http://www.wu.ac.at/fileadmin/wu/h/press/Pressebilder/campus_wu_c_johannes_zinner.jpg);*/
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);
+    background-image: url(https://images.unsplash.com/photo-1420768255295-e871cbf6eb81);
     background-size: cover;
 }
 
@@ -71,6 +73,8 @@ md-toolbar {
     padding: 20px;
     background: rgba(0,0,0,0.6)
 }
+
+/* Pillars & Jobprofiles */
 
 .pillars, .jobProfiles{
     padding: 40px;
@@ -88,19 +92,23 @@ md-toolbar {
 
 .jobProfiles md-checkbox .md-icon,
 .pillars md-checkbox .md-icon {
-    border-radius: 50%;
+
+}
+
+/* Reset disable checkbox style to normal */
+.jobProfiles md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon,
+.pillars md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon{
+    border-color: rgba(0,0,0,0.54);
 }
 
 .jobProfiles md-checkbox.md-checked .md-icon,
 .pillars md-checkbox.md-checked .md-icon{
-    background-color: #009688;
-    color: #ffffff;
+
 }
 
 .jobProfiles md-button,
 .pillars md-button {
     position: relative;
-    /*opacity: 0.4;*/
 }
 
 .jobProfiles md-button,
