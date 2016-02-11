@@ -18,19 +18,16 @@ md-toolbar {
 /*
  * Scrollbars
  */
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
     width: 12px;  /* for vertical scrollbars */
     height: 12px; /* for horizontal scrollbars */
 }
 
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -45,14 +42,25 @@ md-toolbar {
     max-width: 150px !important;
 }
 
-.toolbar-header .logo{
+.toolbar-header .logo {
     font-family: "Montserrat", "Arial Narrow Bold", sans-serif;
 }
 
-.toolbar-header .logo img{
+.toolbar-header .logo img {
     vertical-align: middle;
     max-height: 40px
 }
+
+
+
+/*
+ * Stylesheets der Startseite
+ */
+
+
+/*
+ * Cover page with Image
+ */
 
 .cover-page {
     position: relative;
@@ -62,45 +70,27 @@ md-toolbar {
     color: white;
     text-align: center;
     display: flex;
-    /*background-image: url(http://www.wu.ac.at/fileadmin/wu/h/press/Pressebilder/campus_wu_c_johannes_zinner.jpg);*/
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/e/ea/Earthlights_dmsp_1994%E2%80%931995.jpg);
+    background-image: url(https://images.unsplash.com/photo-1420768255295-e871cbf6eb81);
+    /*background-image: url(https://images.unsplash.com/photo-1450340171252-2766ed65a4ec);*/
     background-size: cover;
 }
 
-.cover-page .text{
+.cover-page .text {
     padding: 20px;
     background: rgba(0,0,0,0.6)
 }
 
-.pillars, .jobProfiles{
+/*
+ * Stylessheets für Pillars & Jobprofiles
+ */
+
+.pillarJobprofileBox {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.pillars, .jobProfiles {
     padding: 40px;
-}
-
-.pillars md-checkbox{
-    position: absolute;
-    top: 10px;
-    right: 5px;
-}
-
-.jobProfiles md-checkbox{
-    margin: auto;
-}
-
-.jobProfiles md-checkbox .md-icon,
-.pillars md-checkbox .md-icon {
-    border-radius: 50%;
-}
-
-.jobProfiles md-checkbox.md-checked .md-icon,
-.pillars md-checkbox.md-checked .md-icon{
-    background-color: #009688;
-    color: #ffffff;
-}
-
-.jobProfiles md-button,
-.pillars md-button {
-    position: relative;
-    /*opacity: 0.4;*/
 }
 
 .jobProfiles md-button,
@@ -109,7 +99,18 @@ md-toolbar {
     color: #ffffff;
 }
 
-.jobProfiles md-card:hover{
+.jobProfiles md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon,
+.pillars md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon {
+    border-color: rgba(0,0,0,0.54); /* Reset disable checkbox style to normal */
+}
+
+/* JobProfiles */
+
+.jobProfiles md-checkbox {
+    margin: auto;
+}
+
+.jobProfiles md-card:hover {
     opacity: 1;
 }
 
@@ -117,6 +118,11 @@ md-toolbar {
     padding: 0;
     background: #546E7A;
     color: #ffffff;
+    text-align:left;
+}
+
+.jobProfiles button .md-grid-text {
+    padding-left: 20px;
 }
 
 .jobProfiles button:not([disabled]):hover {
@@ -125,14 +131,31 @@ md-toolbar {
     color: #000000;
 }
 
-.pillars md-button:hover {
-    opacity: 1;
+/* Pillars */
+
+.pillars md-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 5px;
 }
+
+.pillars .pillar-bam {
+    background-color: #FDB45C;
+}
+
+.pillars .pillar-csc {
+    background-color: #97BBCD;
+}
+
+.pillars .pillar-bis {
+    background-color: #F7464A;
+}
+
 
 /*
  * Stylesheets der Universitätsinfo sidenav
  */
-.university-info-sidenav md-toolbar{
+.university-info-sidenav md-toolbar {
     color: white;
 }
 
@@ -145,7 +168,7 @@ md-toolbar {
     min-height: 300px;
 }
 
-.university-info-sidenav .keyvalue-list md-icon{
+.university-info-sidenav .keyvalue-list md-icon {
     font-size: 32px;
     padding-bottom: 10px;
 }
@@ -157,33 +180,33 @@ md-toolbar {
 /*
  * Stylesheet der Universitätslisten sidenav
  */
-.university-list-sidenav .filter-options{
+.university-list-sidenav .filter-options {
     min-height: 280px;
 }
 
 .university-list-sidenav .job-filters md-checkbox .md-container,
-.university-list-sidenav .job-filters md-checkbox.md-checked .md-icon{
+.university-list-sidenav .job-filters md-checkbox.md-checked .md-icon {
     background-color: rgba(0, 128, 0, 0.5);
     color: #ffffff;
 }
 
 .university-list-sidenav .pillar-filters .pillar-bam md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon {
     background-color: rgba(253, 180, 92, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-bis md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon {
     background-color: rgba(247, 70, 74, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-csc md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon {
     background-color: rgba(151, 187, 205, 0.5);
 }
 
 /*
  * Stylesheets für die Universitätsliste
  */
-#universityListToggler{
+#universityListToggler {
     background-color: #ffffff;
     position: absolute;
     top: 50%;
@@ -191,25 +214,11 @@ md-toolbar {
     z-index: 20;
 }
 
-/*
- * Stylesheets der Startseite
- */
-.pillars .pillar-bam {
-    background-color: #FDB45C;
-}
-
-.pillars .pillar-csc {
-    background-color: #97BBCD;
-}
-
-.pillars .pillar-bis{
-    background-color: #F7464A;
-}
 
 /*
  * Stylesheets für den Footer
  */
-footer{
+footer {
     position: fixed;
     bottom: 1px;
     left: 0;
