@@ -163,21 +163,21 @@ md-toolbar {
 
 .university-list-sidenav .job-filters md-checkbox .md-container,
 .university-list-sidenav .job-filters md-checkbox.md-checked .md-icon{
-    background-color: #008000;
+    background-color: rgba(0, 128, 0, 0.5);
     color: #ffffff;
 }
 
 .university-list-sidenav .pillar-filters .pillar-bam md-checkbox .md-container,
 .university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon{
-    background-color: #FDB45C;
+    background-color: rgba(253, 180, 92, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-bis md-checkbox .md-container,
 .university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon{
-    background-color: #F7464A;
+    background-color: rgba(247, 70, 74, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-csc md-checkbox .md-container,
 .university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon{
-    background-color: #97BBCD;
+    background-color: rgba(151, 187, 205, 0.5);
 }
 
 /*

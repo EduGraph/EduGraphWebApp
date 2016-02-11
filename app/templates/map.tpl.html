@@ -19,7 +19,6 @@
     <md-tabs flex>
         <md-tab label="Hochschulen ({{universities.length}})">
             <md-content class="university-list" layout-padding>
-                <h3>Hochschulen</h3>
                 <md-list>
                     <md-list-item ng-repeat="university in universities">
                         <md-button ng-click="openUniversityByURI(university.universityURI)">{{university.universityLabel}}</md-button>
@@ -29,9 +28,8 @@
                 </md-list>
             </md-content>
         </md-tab>
-        <md-tab label="Filter">
+        <md-tab label="Ihre Auswahl (Filter)">
             <md-content class="filter-options" layout-padding>
-                <h3>Ihre Auswahl</h3>
                 <form name="universityFilterForm">
                     <div class="job-filters" flex layout="column" layout-align="center">
                         <h4>Job Profile</h4>
