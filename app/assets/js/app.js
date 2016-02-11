@@ -10,7 +10,7 @@ var studysearchApp = angular.module('studysearchApp', ['ngMaterial', 'chart.js',
  */
 studysearchApp.constant("studysearchConfig", {
     // SPARQL Endpoint URL
-    "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraph/query",
+    "sparqlEndpoint": "http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphTest/query",
     // SPARQL Queries cachen um Ladezeiten zu verringern
     "cacheSPARQLQueries": false,
     // Grenzwert damit Säule als Schwerpunkt gilt

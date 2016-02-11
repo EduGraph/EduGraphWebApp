@@ -18,19 +18,16 @@ md-toolbar {
 /*
  * Scrollbars
  */
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
     width: 12px;  /* for vertical scrollbars */
     height: 12px; /* for horizontal scrollbars */
 }
 
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -45,17 +42,25 @@ md-toolbar {
     max-width: 150px !important;
 }
 
-.toolbar-header .logo{
+.toolbar-header .logo {
     font-family: "Montserrat", "Arial Narrow Bold", sans-serif;
 }
 
-.toolbar-header .logo img{
+.toolbar-header .logo img {
     vertical-align: middle;
     max-height: 40px
 }
 
 
-/* Cover with Image */
+
+/*
+ * Stylesheets der Startseite
+ */
+
+
+/*
+ * Cover page with Image
+ */
 
 .cover-page {
     position: relative;
@@ -66,49 +71,26 @@ md-toolbar {
     text-align: center;
     display: flex;
     background-image: url(https://images.unsplash.com/photo-1420768255295-e871cbf6eb81);
+    /*background-image: url(https://images.unsplash.com/photo-1450340171252-2766ed65a4ec);*/
     background-size: cover;
 }
 
-.cover-page .text{
+.cover-page .text {
     padding: 20px;
     background: rgba(0,0,0,0.6)
 }
 
-/* Pillars & Jobprofiles */
+/*
+ * Stylessheets für Pillars & Jobprofiles
+ */
 
-.pillars, .jobProfiles{
+.pillarJobprofileBox {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.pillars, .jobProfiles {
     padding: 40px;
-}
-
-.pillars md-checkbox{
-    position: absolute;
-    top: 10px;
-    right: 5px;
-}
-
-.jobProfiles md-checkbox{
-    margin: auto;
-}
-
-.jobProfiles md-checkbox .md-icon,
-.pillars md-checkbox .md-icon {
-
-}
-
-/* Reset disable checkbox style to normal */
-.jobProfiles md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon,
-.pillars md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon{
-    border-color: rgba(0,0,0,0.54);
-}
-
-.jobProfiles md-checkbox.md-checked .md-icon,
-.pillars md-checkbox.md-checked .md-icon{
-
-}
-
-.jobProfiles md-button,
-.pillars md-button {
-    position: relative;
 }
 
 .jobProfiles md-button,
@@ -117,7 +99,18 @@ md-toolbar {
     color: #ffffff;
 }
 
-.jobProfiles md-card:hover{
+.jobProfiles md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon,
+.pillars md-checkbox.md-default-theme[disabled] .md-icon, md-checkbox[disabled] .md-icon {
+    border-color: rgba(0,0,0,0.54); /* Reset disable checkbox style to normal */
+}
+
+/* JobProfiles */
+
+.jobProfiles md-checkbox {
+    margin: auto;
+}
+
+.jobProfiles md-card:hover {
     opacity: 1;
 }
 
@@ -125,6 +118,11 @@ md-toolbar {
     padding: 0;
     background: #546E7A;
     color: #ffffff;
+    text-align:left;
+}
+
+.jobProfiles button .md-grid-text {
+    padding-left: 20px;
 }
 
 .jobProfiles button:not([disabled]):hover {
@@ -133,14 +131,31 @@ md-toolbar {
     color: #000000;
 }
 
-.pillars md-button:hover {
-    opacity: 1;
+/* Pillars */
+
+.pillars md-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 5px;
 }
+
+.pillars .pillar-bam {
+    background-color: #FDB45C;
+}
+
+.pillars .pillar-csc {
+    background-color: #97BBCD;
+}
+
+.pillars .pillar-bis {
+    background-color: #F7464A;
+}
+
 
 /*
  * Stylesheets der Universitätsinfo sidenav
  */
-.university-info-sidenav md-toolbar{
+.university-info-sidenav md-toolbar {
     color: white;
 }
 
@@ -153,7 +168,7 @@ md-toolbar {
     min-height: 300px;
 }
 
-.university-info-sidenav .keyvalue-list md-icon{
+.university-info-sidenav .keyvalue-list md-icon {
     font-size: 32px;
     padding-bottom: 10px;
 }
@@ -162,36 +177,64 @@ md-toolbar {
     font-size: 14px;
 }
 
+.pillarChart{
+    position: relative;
+}
+
+.pillarChart .background-icon {
+    z-index:0;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 0;
+    padding-top: 12%;
+    padding-bottom: 18%;
+    color: #444;
+    margin-top: -15%;
+    margin-left: -15%;
+    font-size: 1.4em;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgba(224,224,224,1);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAAER0lEQVR4Ae3bb2hVZRzA8e/dvbq5P2pLtmGOUWvL/ohrBRXDIBRsKoWyEiUnFlrSCwWhBGOVYBFRTCxpabq0NZRJwQYzHW0VUSxXRlA2xf7Qi2pWjOm07d77y9e/p8PtnvOcZzc4n+9rfw8/0QfPOZNIJBKSLtX/jqhyRLRA7osWiBaIFiimnjWIag31FJHTKmhmP8MI3g2zn3WUk2OuYTMDpJD/WIoPeZxZ5ISb2MtFxEdjvEYNU6qKw6SQAKVop5IpMYOXuIJY6DK7KMCxexlGLHaGBpzJYydpxHIpWojhQCnHkQz9SC+tbGMTa6+2iW20cpyfkAz1MJuQzeNbxLNLvEsz8/BSyXo6GUc8+4a5hKjW+3eRr9hACZlBCY9yGvHoB24kJFX84nHoIMvI1gpOeUz7mUpCUOZx7/zBRmL4kcdm/kTM+I45WDadzxAzPqCMICroQ8z4hARWvY4YpdlBjKDyaCGNGL2KRasRownWYMsjTCBGK7GkjAuI6gpLsWkZfyOqXynFiiOIKsUqbHuIFKI6hAX3IUZPEoYtiNE9BDaIqDoIy1HzNiKgVYjqLMWEZSbnEdVyAjFv/yWEqRFR9RPAXYjqCGE7hqgW4tvbalSSGwhbjXEbteFTPqNq1GFc6FSnXiCBLw8iqgW4UIeo7seXA2rMEK7op4U38EVfaVtwZZvxz2sfKhFVFa5UI6pystakRpzHJf3o+gBZe0aNeAuX2tXpT5O1d9SIrbik/xYcyP677u9qRCMurTCeDbpUBslQLS7NRzKU9QJluFRhf4FCXCqyv0Acl+L2F5iJS7PtL3AdLlXaX6AOl+qzX6BJ9aX6Batxaa06/QuaVBntVSNacOl5dfru4G9punGpV52+mawtViNGieNKgjF1+iKyVsykGnI3rjQYb2IL8OFzNaYVV/aokz/Cl11qzG8kcGEaI3YukNsRVRMuPIyobsanYdy/l4jxtfHp1beWQK9abb2Negrfyo0f5/ie6YSpgHPGx/NSmw/Xwg7C9CyiaiOQ+SSNO7mOsNxpfCmboJqA9mF+4ighDLMwP2/sIbC5XERU3SSwLUEvohqlDAu2IkYHsSvGIcToCazI41PEqI08bImzDzEaIIYlNYwiRsfIx4YC3keM/uJ6LFqJYDZENUHVchoxSrMcy15AMBulmSA2MIZg9hzWxTiI/Gv93IIft/Gxx8Q3CUWc9zwOTNLBrWRjAZ2kPKZ1ESck0+hAPEpzgnUUkUkx6+kjjXjUToIQxdiN4N0lTrCdBkrRSmlgOycZR/DuFWKE7jEuIxkbYYgBuq82wBAjSMbGacaReoYRy51hIQ7N4GWSiKUmeZECnLuDfsRCfdQxZRo5hQRokKVMuUV0Menjj81RGsgZc9hEHxMImZvgJBu5lhxUyBJ20sM5kogqyVl62MliCiH35SOqfHJf9F8RowWiBaIFogXsaVJFIrnpH5qSQQYc1/5/AAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+}
+
 /*
  * Stylesheet der Universitätslisten sidenav
  */
-.university-list-sidenav .filter-options{
+.university-list-sidenav .filter-options {
     min-height: 280px;
 }
 
 .university-list-sidenav .job-filters md-checkbox .md-container,
-.university-list-sidenav .job-filters md-checkbox.md-checked .md-icon{
+.university-list-sidenav .job-filters md-checkbox.md-checked .md-icon {
     background-color: rgba(0, 128, 0, 0.5);
     color: #ffffff;
 }
 
 .university-list-sidenav .pillar-filters .pillar-bam md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-bam md-checkbox.md-checked .md-icon {
     background-color: rgba(253, 180, 92, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-bis md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-bis md-checkbox.md-checked .md-icon {
     background-color: rgba(247, 70, 74, 0.5);
 }
 .university-list-sidenav .pillar-filters .pillar-csc md-checkbox .md-container,
-.university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon{
+.university-list-sidenav .pillar-filters .pillar-csc md-checkbox.md-checked .md-icon {
     background-color: rgba(151, 187, 205, 0.5);
 }
 
 /*
  * Stylesheets für die Universitätsliste
  */
-#universityListToggler{
+#universityListToggler {
     background-color: #ffffff;
     position: absolute;
     top: 50%;
@@ -199,25 +242,11 @@ md-toolbar {
     z-index: 20;
 }
 
-/*
- * Stylesheets der Startseite
- */
-.pillars .pillar-bam {
-    background-color: #FDB45C;
-}
-
-.pillars .pillar-csc {
-    background-color: #97BBCD;
-}
-
-.pillars .pillar-bis{
-    background-color: #F7464A;
-}
 
 /*
  * Stylesheets für den Footer
  */
-footer{
+footer {
     position: fixed;
     bottom: 1px;
     left: 0;
