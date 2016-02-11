@@ -1,7 +1,7 @@
 # All Universities based on EduGraph
 
 ```sparql
-#QUERY <http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraphEnrichment/query>
+#QUERY <http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraph/query>
 
 PREFIX schema: <http://schema.org/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -22,18 +22,23 @@ PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 
 SELECT
     ?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude
-    ?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude
+    ?universityLocationURI ?universityLocationLabel
     ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy
     ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE
 	?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE
 WHERE
 {
     ?universityURI a schema:CollegeOrUniversity;
-        rdfs:label ?universityLabel_lang;
-        foaf:homepage ?universityHomepage;
-        geo:lat ?universityLatitude;
-        geo:long ?universityLongitude;
-        schema:location ?universityLocationURI.
+        schema:name ?universityLabel_lang;
+        schema:url ?universityHomepage;
+       	schema:location ?universityLocationURI;
+       	schema:geo ?universityGeoCoordinates
+    ?universityGeoCoordinates schema:latitude ?universityLatitude;
+        schema:longitude ?universityLongitude.
+		schema:geo [
+			schema:latitude ?universityLatitude;
+			schema:longitude ?universityLongitude;
+		].
     OPTIONAL {
         ?universityURI dbpedia-owl:thumbnail ?universitythumbnail;
     }
@@ -64,16 +69,12 @@ WHERE
     #FILTER (?degreeProgramJobITM >= 0.3)
     #FILTER (?degreeProgramJobSWE >= 0.3)
 
-    FILTER (langMatches(lang(?universityLabel_lang),"de"))
+    #FILTER (langMatches(lang(?universityLabel_lang),"de"))
     BIND (str(?universityLabel_lang) AS ?universityLabel)
 
-    ?universityLocationURI rdfs:label ?universityLocationLabel_lang;
-        schema:geo [
-            schema:latitude ?universityLocationLatitude;
-            schema:longitude ?universityLocationLongitude;
-        ]
+    ?universityLocationURI schema:name ?universityLocationLabel_lang;
 
-    FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
+ 	#FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
     BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel)
 }
 ```
