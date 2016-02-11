@@ -1,4 +1,4 @@
-<md-sidenav flex="grow" md-component-id="university-info-sidenav" md-is-locked-open="universityInfoSidenavLock" class="university-sidenav">
+<md-sidenav flex="grow" md-component-id="university-info-sidenav" md-is-locked-open="universityInfoSidenavLock" class="university-info-sidenav">
     <md-toolbar layout-padding class="md-hue-1">
         <div class="md-toolbar-tools">
             <h3>{{chosenUniversity.universityLabel}}</h3>
@@ -9,10 +9,12 @@
         </div>
     </md-toolbar>
 
-    <div layout="row" layout-padding layout-align="center center">
+    <div class="degree-program-name" layout="row" layout-padding layout-align="center center">
         <h3>{{chosenUniversity.degreeProgramLabel}}</h3>
         <span flex></span>
-        <a ng-href="{{chosenUniversity.degreeProgramHomepage}}" target="_blank"><i class="material-icons">share</i></a>
+        <md-button ng-href="{{chosenUniversity.degreeProgramHomepage}}" target="_blank" class="md-icon-button">
+            <md-icon md-font-library="material-icons" aria-label="Homepage öffnen">open_in_new</md-icon>
+        </md-button>
     </div>
 
     <md-list class="keyvalue-list" layout="row">
@@ -36,17 +38,18 @@
         </md-list-item>
     </md-list>
 
-    <md-content layout-padding>
+    <md-content class="degree-program-diagram" flex layout-padding>
         <h3>Schwerpunkte</h3>
         <canvas id="pie" class="chart chart-doughnut"
-                chart-data="pillarChartData" chart-labels="pillarChartLabels" chart-colours="pillarChartColor">
+                chart-data="pillarChartData" chart-labels="pillarChartLabels" chart-colours="pillarChartColor"
+                chart-options="pillarChartOptions">
         </canvas>
     </md-content>
 
-    <md-content layout-padding>
+    <md-content class="degree-program-diagram" flex="grow" layout-padding>
         <h3>Jobprofile</h3>
         <canvas id="radar" class="chart chart-radar"
-                chart-data="jobChartData" chart-labels="jobChartLabels">
+                chart-data="jobChartData" chart-labels="jobChartLabels" chart-options="jobChartOptions">
         </canvas>
     </md-content>
 </md-sidenav>

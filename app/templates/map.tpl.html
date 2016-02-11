@@ -10,11 +10,13 @@
 </leaflet>
 
 
-<md-sidenav md-is-locked-open="universityListSidenavLock" flex layout="column">
+<md-sidenav class="university-list-sidenav" md-is-locked-open="universityListSidenavLock" flex layout="column">
     <md-toolbar layout-padding class="md-hue-1">
-        <h2>Hochschulliste</h2>
+        <div class="md-toolbar-tools">
+            <h2>Hochschulliste</h2>
+        </div>
     </md-toolbar>
-    <md-content layout-padding>
+    <md-content class="filter-options" layout-padding>
         <h3>Filter</h3>
         <form name="universityFilterForm" layout="row">
             <div flex layout="column" layout-align="center">
@@ -31,7 +33,7 @@
             </div>
         </form>
     </md-content>
-    <md-content layout-padding>
+    <md-content class="university-list" layout-padding>
         <h3>Hochschulen</h3>
         <md-list>
             <md-list-item ng-repeat="university in universities">

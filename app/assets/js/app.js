@@ -69,3 +69,11 @@ studysearchApp.config(function($mdThemingProvider) {
 studysearchApp.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 }]);
+
+/*
+ * Deaktivierung des Click Hijack im Gesture Provider von Angular Materials
+ * Mehrere Touch Events haben vorher nicht funktioniert
+ */
+studysearchApp.config(function($mdGestureProvider) {
+    $mdGestureProvider.skipClickHijack();
+});

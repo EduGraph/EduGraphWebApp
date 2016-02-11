@@ -46,9 +46,17 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
     $scope.pillarChartData = [0, 0, 0, 0];
     $scope.pillarChartColor = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
-
+    $scope.pillarChartOptions = {
+        animateRotate : false,
+        animateScale : false
+    };
     $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
-    $scope.jobChartData = [[0.23, 0.2, 0.23, 0.41, 0.23]];
+    $scope.jobChartData = [[0, 0, 0, 0, 0]];
+    $scope.jobChartOptions = {
+        scaleOverride: true,
+        scaleSteps: 4,
+        scaleStepWidth: 0.125
+    };
 
     // Controller Funktion für die SPARQL Abfrage
     $scope.queryUniversity = function(){
@@ -117,7 +125,12 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
                 hotosm: {
                     name: 'HOTOSM',
                     url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                    type: 'xyz',
+                    layerOptions: {
+                        attribution:
+                            '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>.' +
+                            'Tiles courtesy of <a target="_blank" href="http://hot.openstreetmap.org/">Humanitarian OpenStreetMap Team</a>'
+                    }
                 },
                 toner: {
                     name: 'Stamen Toner',
@@ -150,13 +163,11 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         },
         defaults: {
             minZoom: 5,
-            scrollWheelZoom: true
+            scrollWheelZoom: true,
+            tap: true
         }
     };
     angular.extend($scope, leafletInitiateOptions);
-
-    // ?
-    $scope.eventDetected = "No events yet...";
 
     /*
      * Setzen von Eventbehandlung auf die Leaflet Marker
@@ -165,7 +176,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     for (var k in markerEvents){
         var eventName = 'leafletDirectiveMarker.universityMap.' + markerEvents[k];
         $scope.$on(eventName, function(event, args){
-            //console.log(event,args);
+            console.log(event,args);
             if(event.name == 'leafletDirectiveMarker.universityMap.click'){
                 var chosenUniversityURI = $scope.markers[args.modelName].uri;
                 $scope.openUniversityByURI(chosenUniversityURI);
@@ -209,6 +220,11 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.toggleUniversityInfoSidenav = function(){
         $scope.universityInfoSidenavLock = $scope.universityInfoSidenavLock ? false : true;
     };
+    $scope.$watch('universityInfoSidenavLock', function(newVal, oldVal){
+        if(newVal){
+            $scope.universityListSidenavLock = false;
+        }
+    });
 
     /*
      * Deklaration und Initialisierung der Universitätsliste sidenav und einer Funktion
@@ -219,7 +235,16 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
         $scope.universityListSidenavLock = $scope.universityListSidenavLock ? false : true;
         $scope.invalidateMap();
     };
+    $scope.$watch('universityListSidenavLock', function(newVal, oldVal){
+        if(newVal){
+            $scope.universityInfoSidenavLock = false;
+        }
+    });
 
+    /*
+     * Invalidieren der Karte. Behebt einen Fehler, durch den Teile der Karte ausgegraut waren
+     * und keine Kacheln geladen wurden.
+     */
     $scope.invalidateMap = function(){
         leafletData.getMap().then(function(map){
             map.invalidateSize();
@@ -228,8 +253,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     };
 
     /*
-     * Timeout Funktion für das invalidieren der Karte. Behebt einen Fehler, durch den Teile der Karte ausgegraut waren
-     * und keine Kacheln geladen wurden.
+     * Timeout Funktion für das invalidieren der Karte.
      */
     $timeout(function(){
         $scope.invalidateMap();
