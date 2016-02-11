@@ -40,7 +40,7 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 'PREFIX wikibase: <http://wikiba.se/ontology#> ' +
                 'PREFIX geo:<http://www.w3.org/2003/01/geo/wgs84_pos#> ' +
                 ' ' +
-                'SELECT ' +
+                'SELECT DISTINCT' +
                 '	?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude ' +
                 '	?universityLocationURI ?universityLocationLabel' +
                 '   ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy ' +
