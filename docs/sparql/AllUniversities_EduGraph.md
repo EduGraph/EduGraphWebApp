@@ -1,8 +1,6 @@
 # All Universities based on EduGraph
 
 ```sparql
-#QUERY <http://fbwsvcdev.fh-brandenburg.de:8080/fuseki/EduGraph/query>
-
 PREFIX schema: <http://schema.org/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -20,25 +18,22 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 
-SELECT
+SELECT DISTINCT
     ?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude
     ?universityLocationURI ?universityLocationLabel
     ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy
     ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE
-	?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE
+    ?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE
 WHERE
 {
     ?universityURI a schema:CollegeOrUniversity;
         schema:name ?universityLabel_lang;
         schema:url ?universityHomepage;
-       	schema:location ?universityLocationURI;
-       	schema:geo ?universityGeoCoordinates
+        schema:location ?universityLocationURI;
+        schema:geo ?universityGeoCoordinates.
     ?universityGeoCoordinates schema:latitude ?universityLatitude;
         schema:longitude ?universityLongitude.
-		schema:geo [
-			schema:latitude ?universityLatitude;
-			schema:longitude ?universityLongitude;
-		].
+
     OPTIONAL {
         ?universityURI dbpedia-owl:thumbnail ?universitythumbnail;
     }
@@ -52,17 +47,14 @@ WHERE
     ?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar;
         bise:pillarBIS ?degreeProgramBISPillar;
         bise:pillarCSC ?degreeProgramCSCPillar.
-    ?rankingURI schema:itemReviewed  ?degreeProgramURI;
-        a schema:Rating;
-        schema:ratingValue ?degreeProgramRankingCHE.
     #FILTER (?degreeProgramBAMPillar >= 0.3)
     #FILTER (?degreeProgramBISPillar >= 0.3)
     #FILTER (?degreeProgramCSCPillar >= 0.3)
-	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM)
-  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON)
-	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF)
-	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM)
-	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE)
+    BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM)
+    BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON)
+    BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF)
+    BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM)
+    BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE)
     #FILTER (?degreeProgramJobADM >= 0.3)
     #FILTER (?degreeProgramJobCON >= 0.3)
     #FILTER (?degreeProgramJobINF >= 0.3)
@@ -74,7 +66,7 @@ WHERE
 
     ?universityLocationURI schema:name ?universityLocationLabel_lang;
 
- 	#FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
+    #FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))
     BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel)
 }
 ```
