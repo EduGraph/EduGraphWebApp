@@ -4,7 +4,7 @@
 
         <!-- Meta -->
         <title>StudySearch-WebApp Prototype</title>
-        <base href="http://localhost/webapp/">
+        <base href="http://localhost:8888/git/StudySearch-WebApp/app/">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,23 +24,24 @@
     <body ng-controller="AppCtrl" layout="column">
 
         <!-- Toolbar im oberen Teil der Seite -->
-        <md-toolbar layout="row" layout-padding layout-align="center center" class="header toolbar-header">
-                <div class="logo" layout="row" layout-align="center center">
+        <md-toolbar flex="nogrow" layout="row" layout-padding layout-align="center center" class="header toolbar-header">
+                <md-button href="./" class="logo" layout="row" layout-align="center center">
                     <img src="assets/images/edugraph-logo.png">
                     <span>Study<b>Search</b></span>
-                </div>
+                </md-button>
+
                 <span flex></span>
+
                 <md-button href="./"><md-icon md-font-library="material-icons" aria-label="Startseite">home</md-icon> Startseite</md-button>
                 <md-button href="./map"><md-icon md-font-library="material-icons" aria-label="Karte">map</md-icon> Studiengänge</md-button>
                 <md-button href="./imprint"><md-icon md-font-library="material-icons" aria-label="Impressum">face</md-icon> Impressum</md-button>
         </md-toolbar>
 
         <!-- Hauptelement der Applikation und Einbindung der Views -->
-        <main flex layout="row" ng-view>
+        <main flex="nogrow" layout="row" ng-view>
         </main>
 
         <!-- AngularJS -->
-
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
         <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>

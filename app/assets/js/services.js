@@ -40,18 +40,20 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 'PREFIX wikibase: <http://wikiba.se/ontology#> ' +
                 'PREFIX geo:<http://www.w3.org/2003/01/geo/wgs84_pos#> ' +
                 ' ' +
-                'SELECT ' +
+                'SELECT DISTINCT' +
                 '	?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude ' +
-                '	?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude ' +
+                '	?universityLocationURI ?universityLocationLabel' +
                 '   ?degreeProgramURI ?degreeProgramLabel ?degreeProgramHomepage ?degreeProgramCreditPoints ?degreeProgramPeriodOfStudy ' +
                 '   ?degreeProgramBAMPillar ?degreeProgramBISPillar ?degreeProgramCSCPillar ?degreeProgramRankingCHE ' +
+                '   ?degreeProgramJobADM ?degreeProgramJobCON ?degreeProgramJobINF ?degreeProgramJobITM ?degreeProgramJobSWE ' +
                 '{ ' +
                 '?universityURI a schema:CollegeOrUniversity; ' +
-                'rdfs:label ?universityLabel_lang; ' +
-                'foaf:homepage ?universityHomepage; ' +
-                'geo:lat ?universityLatitude; ' +
-                'geo:long ?universityLongitude; ' +
-                'schema:location ?universityLocationURI. ' +
+                'schema:name ?universityLabel_lang; ' +
+                'schema:url ?universityHomepage; ' +
+                'schema:location ?universityLocationURI; ' +
+                'schema:geo ?universityGeoCoordinates. ' +
+                '?universityGeoCoordinates schema:latitude ?universityLatitude; ' +
+                'schema:longitude ?universityLongitude. ' +
                 'OPTIONAL { ' +
                 '    ?universityURI dbpedia-owl:thumbnail ?universitythumbnail; ' +
                 '} ' +
@@ -65,21 +67,27 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 '?degreeProgramPillars bise:pillarBAM ?degreeProgramBAMPillar; '+
                 '	bise:pillarBIS ?degreeProgramBISPillar; '+
                 '	bise:pillarCSC ?degreeProgramCSCPillar. '+
-                '?rankingURI schema:itemReviewed  ?degreeProgramURI; '+
+                'OPTIONAL { ' +
+                '   ?rankingURI schema:itemReviewed  ?degreeProgramURI; '+
                 '   a schema:Rating; '+
-                '   schema:ratingValue ?degreeProgramRankingCHE. '+
+                '   schema:ratingValue ?degreeProgramRankingCHE. ' +
+                '} '+
                 (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
-                'FILTER (langMatches(lang(?universityLabel_lang),"de")) ' +
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM) '+
+                '  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON) '+
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF) '+
+                '	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM) '+
+                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE) '+
+                (options.filter.jobs.ADM ? 'FILTER (?degreeProgramJobADM >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.CON ? 'FILTER (?degreeProgramJobCON >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.INF ? 'FILTER (?degreeProgramJobINF >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.ITM ? 'FILTER (?degreeProgramJobITM >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
+                (options.filter.jobs.SWE ? 'FILTER (?degreeProgramJobSWE >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
                 'BIND (str(?universityLabel_lang) AS ?universityLabel) ' +
                 ' '+
-                '?universityLocationURI rdfs:label ?universityLocationLabel_lang; ' +
-                'schema:geo [ ' +
-                '   schema:latitude ?universityLocationLatitude; ' +
-                '   schema:longitude ?universityLocationLongitude; ' +
-                '] '+
-                'FILTER (langMatches(lang(?universityLocationLabel_lang),"de")) ' +
+                '?universityLocationURI schema:name ?universityLocationLabel_lang; ' +
                 'BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel) ' +
                 '} '
 
@@ -130,32 +138,27 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 'PREFIX geo:<http://www.w3.org/2003/01/geo/wgs84_pos#> ' +
                 ' ' +
                 'SELECT DISTINCT ' +
-                '	?universityURI ?universityLabel ?universityHomepage ?universityLatitude ?universityLongitude ' +
+                '	?universityURI ?universityLabel ?universityHomepage' +
                 '	?universityLocationURI ?universityLocationLabel ?universityLocationLatitude ?universityLocationLongitude ' +
                 '{ ' +
                 'VALUES ?universityURI { ' +
                 '    <'+ decodedUri +'>' +
                 '}' +
                 '?universityURI a schema:CollegeOrUniversity;' +
-                'rdfs:label ?universityLabel_lang;' +
-                'foaf:homepage ?universityHomepage;' +
-                'geo:lat ?universityLatitude;' +
-                'geo:long ?universityLongitude; ' +
-                'schema:location ?universityLocationURI.' +
+                'schema:name ?universityLabel_lang;' +
+                'schema:url ?universityHomepage;' +
+                'schema:location ?universityLocationURI;' +
+                'schema:geo ?universityGeoCoordinates. ' +
+                '?universityGeoCoordinates schema:latitude ?universityLatitude; ' +
+                'schema:longitude ?universityLongitude. ' +
                 'OPTIONAL {' +
                 '    ?universityURI dbpedia-owl:thumbnail ?universitythumbnail;' +
                 '}' +
                 '' +
-                'FILTER (langMatches(lang(?universityLabel_lang),"de"))' +
                 'BIND (str(?universityLabel_lang) AS ?universityLabel)' +
                 ''+
-                '?universityLocationURI rdfs:label ?universityLocationLabel_lang;' +
-                'schema:geo [' +
-                '   schema:latitude ?universityLocationLatitude;' +
-                '   schema:longitude ?universityLocationLongitude;' +
-                ']'+
+                '?universityLocationURI schema:name ?universityLocationLabel_lang;' +
                 ' '+
-                'FILTER (langMatches(lang(?universityLocationLabel_lang),"de"))' +
                 'BIND (str(?universityLocationLabel_lang) AS ?universityLocationLabel)'+
                 '} '
                 /*"PREFIX schema: <http://schema.org/>" +
