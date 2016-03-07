@@ -48,7 +48,8 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.pillarChartColor = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
     $scope.pillarChartOptions = {
         animateRotate : false,
-        animateScale : false
+        animateScale : false,
+        tooltipTemplate: '<%=label%> <%= Math.round(circumference / 6.283 * 100) %> %' // Adds custom tooltip with percentage
     };
     $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
     $scope.jobChartData = [[0, 0, 0, 0, 0]];
