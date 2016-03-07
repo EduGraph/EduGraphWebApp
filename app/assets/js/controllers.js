@@ -55,7 +55,8 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.jobChartOptions = {
         scaleOverride: true,
         scaleSteps: 4,
-        scaleStepWidth: 0.125
+        scaleStepWidth: 0.125,
+        showTooltips: false
     };
 
     // Controller Funktion für die SPARQL Abfrage
