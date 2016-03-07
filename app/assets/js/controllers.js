@@ -43,7 +43,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.universities = [];
 
     // Deklaration und Initialisierung der Universitätsinfo Diagramme
-    $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
+    $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Informatik"];
     $scope.pillarChartData = [0, 0, 0, 0];
     $scope.pillarChartColor = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
     $scope.pillarChartOptions = {
