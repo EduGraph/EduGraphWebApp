@@ -126,7 +126,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             baselayers: {
                 hotosm: {
                     name: 'HOTOSM',
-                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                    url: '//tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                     type: 'xyz',
                     layerOptions: {
                         attribution:
@@ -209,13 +209,14 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             }
         }
         var bamPillar = parseFloat($scope.chosenUniversity.degreeProgramBAMPillar);
-        var bisPillar = parseFloat($scope.chosenUniversity.degreeProgramCSCPillar);
-        var cscPillar = parseFloat($scope.chosenUniversity.degreeProgramBISPillar);
+        var bisPillar = parseFloat($scope.chosenUniversity.degreeProgramBISPillar);
+        var cscPillar = parseFloat($scope.chosenUniversity.degreeProgramCSCPillar);
         var other = (1.0 - (bamPillar+cscPillar+bisPillar)).toFixed(2);
+        // $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Informatik"];
         $scope.pillarChartData = [
             other, bamPillar, bisPillar, cscPillar
         ];
-        //    $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
+        // $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
         $scope.jobChartData = [[
             parseFloat($scope.chosenUniversity.degreeProgramJobADM),
             parseFloat($scope.chosenUniversity.degreeProgramJobCON),
@@ -275,6 +276,15 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
 
     // Nach dem vollständigen Laden des Controllers, Ausführen der ersten Abfrage von Universitäten.
     $scope.queryUniversity();
+
+    // Redraw fix
+    var $chart;
+    $scope.$on("create", function (event, chart) {
+        if (typeof $chart !== "undefined") {
+            $chart.destroy();
+        }
+        $chart = chart;
+    });
 });
 
 /*
