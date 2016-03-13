@@ -43,19 +43,21 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.universities = [];
 
     // Deklaration und Initialisierung der Universitätsinfo Diagramme
-    $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Infomatik"];
+    $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Informatik"];
     $scope.pillarChartData = [0, 0, 0, 0];
     $scope.pillarChartColor = ["#ECEFF1", "#FDB45C", "#F7464A", "#97BBCD"];
     $scope.pillarChartOptions = {
         animateRotate : false,
-        animateScale : false
+        animateScale : false,
+        tooltipTemplate: '<%=label%> <%= Math.round(circumference / 6.283 * 100) %> %' // Adds custom tooltip with percentage
     };
     $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
     $scope.jobChartData = [[0, 0, 0, 0, 0]];
     $scope.jobChartOptions = {
         scaleOverride: true,
         scaleSteps: 4,
-        scaleStepWidth: 0.125
+        scaleStepWidth: 0.125,
+        showTooltips: false
     };
 
     // Controller Funktion für die SPARQL Abfrage
@@ -124,7 +126,7 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             baselayers: {
                 hotosm: {
                     name: 'HOTOSM',
-                    url: 'http://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                    url: '//tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                     type: 'xyz',
                     layerOptions: {
                         attribution:
@@ -207,13 +209,14 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
             }
         }
         var bamPillar = parseFloat($scope.chosenUniversity.degreeProgramBAMPillar);
-        var bisPillar = parseFloat($scope.chosenUniversity.degreeProgramCSCPillar);
-        var cscPillar = parseFloat($scope.chosenUniversity.degreeProgramBISPillar);
+        var bisPillar = parseFloat($scope.chosenUniversity.degreeProgramBISPillar);
+        var cscPillar = parseFloat($scope.chosenUniversity.degreeProgramCSCPillar);
         var other = (1.0 - (bamPillar+cscPillar+bisPillar)).toFixed(2);
+        // $scope.pillarChartLabels = ["Sonstiges", "Betriebswirtschaft", "Wirtschaftsinformatik", "Informatik"];
         $scope.pillarChartData = [
             other, bamPillar, bisPillar, cscPillar
         ];
-        //    $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
+        // $scope.jobChartLabels = ["Administration", "Beratung", "Informatik", "IT-Management", "SW-Entwicklung"];
         $scope.jobChartData = [[
             parseFloat($scope.chosenUniversity.degreeProgramJobADM),
             parseFloat($scope.chosenUniversity.degreeProgramJobCON),
@@ -273,6 +276,15 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
 
     // Nach dem vollständigen Laden des Controllers, Ausführen der ersten Abfrage von Universitäten.
     $scope.queryUniversity();
+
+    // Redraw fix
+    var $chart;
+    $scope.$on("create", function (event, chart) {
+        if (typeof $chart !== "undefined") {
+            $chart.destroy();
+        }
+        $chart = chart;
+    });
 });
 
 /*
