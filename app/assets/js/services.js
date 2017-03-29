@@ -75,11 +75,24 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                 (options.filter.pillars.BAM ? 'FILTER (?degreeProgramBAMPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.BIS ? 'FILTER (?degreeProgramBISPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
                 (options.filter.pillars.CSC ? 'FILTER (?degreeProgramCSCPillar >= '+studysearchConfig.pillarEmphasisValue+') ' : '') +
-                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobADM) '+
-                '  	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobCON) '+
-                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobINF) '+
-                '	BIND(((?degreeProgramBAMPillar+?degreeProgramBISPillar)/2) AS ?degreeProgramJobITM) '+
-                '	BIND((?degreeProgramCSCPillar) AS ?degreeProgramJobSWE) '+
+               
+                'BIND ( IF (?degreeProgramCSCPillar > 0.5,'+
+                '    1,'+
+                '    ?cs / 0.5'+
+                ') AS ?degreeProgramCSCPillarCalc )'+
+    
+                'BIND (?degreeProgramBAMPillar / 0.6 + ?degreeProgramBISPillar / 0.8 AS ?BampBisPillarCalc)'+
+	            'BIND ( IF (?BampBisPillarCalc > 1 ,'+
+      		    '    1,'+
+      		    '    ?BampBisPillarCalc'+
+  		        ') AS ?degreeProgramBAMPBISPillarCalc )'+
+    
+                'BIND( ?degreeProgramCSCPillarCalc AS ?degreeProgramJobADM)'+
+	            'BIND( ?degreeProgramBAMPBISPillarCalc AS ?degreeProgramJobCON)'+
+	            'BIND( ?degreeProgramCSCPillarCalc AS ?degreeProgramJobINF)'+
+	            'BIND( ?degreeProgramBAMPBISPillarCalc AS ?degreeProgramJobITM)'+
+	            'BIND( ?degreeProgramCSCPillarCalc AS ?degreeProgramJobSWE)'+
+    
                 (options.filter.jobs.ADM ? 'FILTER (?degreeProgramJobADM >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
                 (options.filter.jobs.CON ? 'FILTER (?degreeProgramJobCON >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
                 (options.filter.jobs.INF ? 'FILTER (?degreeProgramJobINF >= '+studysearchConfig.jobEmphasisValue+') ' : '') +
