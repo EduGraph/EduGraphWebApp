@@ -55,8 +55,8 @@ studysearchApp.controller('MapCtrl', function($scope, $location, leafletMarkerEv
     $scope.jobChartData = [[0, 0, 0, 0, 0]];
     $scope.jobChartOptions = {
         scaleOverride: true,
-        scaleSteps: 3,
-        scaleStepWidth: 0.2,
+        scaleSteps: 4,
+        scaleStepWidth: 0.25,
         showTooltips: false
     };
 
