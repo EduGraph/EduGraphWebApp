@@ -78,7 +78,7 @@ studysearchApp.factory('SPARQLQueryService', function($http, studysearchConfig) 
                
                 'BIND ( IF (?degreeProgramCSCPillar > 0.5,'+
                 '    1,'+
-                '    ?cs / 0.5'+
+                '    ?degreeProgramCSCPillar / 0.5'+
                 ') AS ?degreeProgramCSCPillarCalc )'+
     
                 'BIND (?degreeProgramBAMPillar / 0.6 + ?degreeProgramBISPillar / 0.8 AS ?BampBisPillarCalc)'+
